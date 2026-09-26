@@ -3,7 +3,7 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-html_content = r'''<!doctype html>
+html_content = r"""<!doctype html>
 <!--
   ESKANDRIA RESTAURANT — Authentic Alexandrian & Egyptian Seafood, Lava Grill & Pastries.
   Location: Medebacher Weg 24, 13507 Berlin, Germany
@@ -1787,7 +1787,7 @@ html_content = r'''<!doctype html>
     .menu-modal {
       position: fixed;
       inset: 0;
-      z-index: 300;
+      z-index: 2000;
       background: #0b1118f5;
       backdrop-filter: blur(22px);
       display: none;
@@ -2244,13 +2244,33 @@ html_content = r'''<!doctype html>
         min-height: 80vh;
       }
       .recipes__head {
-        top: 80px;
+        top: 60px;
         left: var(--gutter);
+        right: var(--gutter);
+      }
+      .recipes__progress {
+        display: none !important;
+      }
+      .recipes__actions {
+        bottom: 78px;
+        left: var(--gutter);
+        right: var(--gutter);
+        display: flex;
+        gap: 10px;
+        z-index: 25;
+      }
+      .recipes__actions .btn-action {
+        flex: 1;
+        padding: 11px 12px;
+        font-size: 0.72rem;
+        letter-spacing: 0.03em;
+        gap: 6px;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
       }
       .gallery__hint {
-        bottom: 16px;
-        font-size: .72rem;
-        padding: 6px 14px;
+        display: none !important;
       }
 
       /* 08 Voices */
@@ -2273,23 +2293,47 @@ html_content = r'''<!doctype html>
         font-size: 2.6rem;
       }
 
+      /* Chapter tag & typography fixes */
+      .chapter-tag {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin: 0 0 16px 0 !important;
+        align-self: flex-start;
+      }
+      .chapter h2.split {
+        font-size: clamp(1.8rem, 7.5vw, 2.8rem);
+        line-height: 1.05;
+        word-break: break-word;
+      }
+      .craft .words .w,
+      .story .words .w {
+        opacity: 0.95 !important;
+      }
+
       /* 09 Finale & Booking */
       .finale {
         padding: 80px var(--gutter) 40px;
       }
       .booking-grid {
         grid-template-columns: 1fr;
-        padding: 24px 18px;
-        gap: 28px;
+        padding: 24px 16px;
+        gap: 24px;
         border-radius: 16px;
       }
-      .booking-form {
+      .form-row {
+        grid-template-columns: 1fr !important;
         gap: 14px;
       }
-      .booking-form input,
-      .booking-form select,
-      .booking-form textarea {
-        padding: 12px 14px;
+      .form-group {
+        margin-bottom: 14px;
+      }
+      .form-group label {
+        font-size: 0.76rem;
+      }
+      .form-group input,
+      .form-group select {
+        padding: 13px 14px;
         font-size: 16px; /* Prevents auto-zoom on iOS */
       }
       .booking-info {
@@ -2319,22 +2363,34 @@ html_content = r'''<!doctype html>
         font-size: .75rem;
       }
 
-      /* Floating Quick Links Button */
+      /* Floating Quick Links on Bottom-Left */
       .floating-link {
-        bottom: 16px;
-        right: 16px;
-        padding: 9px 15px;
+        bottom: 18px;
+        left: 18px;
+        right: auto;
+        padding: 10px 16px;
         font-size: 13px;
         gap: 6px;
+        box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
       }
 
-      /* Floating WhatsApp Button on Mobile */
+      /* Floating WhatsApp on Bottom-Right as a clean round button */
       .floating-wa-btn {
-        bottom: 64px;
-        right: 16px;
-        padding: 8px 14px;
-        font-size: 13px;
-        gap: 6px;
+        bottom: 18px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      }
+      .floating-wa-btn span {
+        display: none;
+      }
+      .floating-wa-btn i {
+        font-size: 1.6rem;
+        margin: 0;
       }
 
       /* Menu Modal on Mobile */
@@ -2959,7 +3015,7 @@ html_content = r'''<!doctype html>
 
   <!-- ══ FLOATING WHATSAPP BUTTON ══ -->
   <a href="https://wa.me/4915567318173?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9%20%D8%A8%D8%B1%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D8%AC%D8%B2%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Book Table or Chat on WhatsApp (+49 15567 318173)">
-    <i class="fab fa-whatsapp"></i> احجز واتساب
+    <i class="fab fa-whatsapp"></i> <span>احجز واتساب</span>
   </a>
 
   <!-- ══ FLOATING QUICK LINKS (From original Odoo) ══ -->
@@ -3362,36 +3418,41 @@ html_content = r'''<!doctype html>
 
     /* FLOATING TAJIN POSE CHAIN ACROSS CHAPTERS */
     gsap.matchMedia().add({ desk: '(min-width: 901px)', mob: '(max-width: 900px)' }, ctx => {
-      const P = ctx.conditions.desk ? [
-        { x: '0vw',   y: '3vh',   scale: 0.95, rotation: 0 },    // 01 hero
-        { x: '-24vw', y: '6vh',   scale: 0.72, rotation: -8 },   // 02 story
-        { x: '27vw',  y: '5vh',   scale: 0.68, rotation: -6 },   // 03 ingredients
-        { x: '26vw',  y: '6vh',   scale: 0.65, rotation: 8 },    // 04 craft
-        { x: '19vw',  y: '0vh',   scale: 0.70, rotation: 6 },    // 05 spectrum
-        { x: '-24vw', y: '6vh',   scale: 0.88, rotation: -12 },  // 06 ritual
-        { x: '38vw',  y: '-32vh', scale: 0.32, rotation: 14 },   // 07 recipes (gallery)
-        { x: '-15vw', y: '-30vh', scale: 0.30, rotation: -6 },   // 08 voices
-        { x: '0vw',   y: '-14vh', scale: 0.60, rotation: 0 },    // 09 finale
-      ] : [
-          { x: '0vw',   y: '2vh',   scale: 0.60, rotation: 0 },   // 01 hero
-          { x: '0vw',   y: '-26vh', scale: 0.40, rotation: -6 },  // 02 story
-          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -5 },  // 03 ingredients
-          { x: '26vw',  y: '-35vh', scale: 0.24, rotation: 6 },   // 04 craft
-          { x: '0vw',   y: '-24vh', scale: 0.32, rotation: 0 },   // 05 spectrum
-          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -8 },  // 06 ritual
-          { x: '26vw',  y: '-38vh', scale: 0.20, rotation: 10 },  // 07 recipes
-          { x: '0vw',   y: '-34vh', scale: 0.22, rotation: 0 },   // 08 voices
-          { x: '0vw',   y: '-14vh', scale: 0.40, rotation: 0 },   // 09 finale
+      if (ctx.conditions.desk) {
+        const P = [
+          { x: '0vw',   y: '3vh',   scale: 0.95, rotation: 0 },    // 01 hero
+          { x: '-24vw', y: '6vh',   scale: 0.72, rotation: -8 },   // 02 story
+          { x: '27vw',  y: '5vh',   scale: 0.68, rotation: -6 },   // 03 ingredients
+          { x: '26vw',  y: '6vh',   scale: 0.65, rotation: 8 },    // 04 craft
+          { x: '19vw',  y: '0vh',   scale: 0.70, rotation: 6 },    // 05 spectrum
+          { x: '-24vw', y: '6vh',   scale: 0.88, rotation: -12 },  // 06 ritual
+          { x: '38vw',  y: '-32vh', scale: 0.32, rotation: 14 },   // 07 recipes (gallery)
+          { x: '-15vw', y: '-30vh', scale: 0.30, rotation: -6 },   // 08 voices
+          { x: '0vw',   y: '-14vh', scale: 0.60, rotation: 0 },    // 09 finale
         ];
-
-      gsap.set(pose, P[0]);
-      chapters.forEach((sec, i) => {
-        if (!i) return;
-        gsap.fromTo(pose, P[i - 1], {
-          ...P[i], ease: 'none', immediateRender: false,
-          scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top top', scrub: true }
+        gsap.set(pose, P[0]);
+        chapters.forEach((sec, i) => {
+          if (!i) return;
+          gsap.fromTo(pose, P[i - 1], {
+            ...P[i], ease: 'none', immediateRender: false,
+            scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top top', scrub: true }
+          });
         });
-      });
+      } else {
+        // Mobile: center tajin in hero, smoothly fade out on scroll so it never covers content or inputs
+        gsap.set(pose, { x: '0vw', y: '2vh', scale: 0.60, rotation: 0 });
+        gsap.to(stage, {
+          autoAlpha: 0,
+          scale: 0.45,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'bottom 85%',
+            end: 'bottom 20%',
+            scrub: true
+          }
+        });
+      }
     });
 
     /* Section Animations */
@@ -3552,11 +3613,13 @@ html_content = r'''<!doctype html>
     gsap.to('.voices__row:not(.voices__row--rev)', { xPercent: -25, ease: 'none', scrollTrigger: { trigger: '.voices', start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
     gsap.fromTo('.voices__row--rev', { xPercent: -25 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '.voices', start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
 
-    // Tajin visibility fades
-    const fade = (trigger, from, to, start, end) => gsap.fromTo(stage, { autoAlpha: from }, { autoAlpha: to, ease: 'none', immediateRender: false, scrollTrigger: { trigger, start, end, scrub: true } });
-    fade('.recipes', 1, 0, 'top 70%', 'top 20%');
-    fade('.finale', 0, 1, 'top 70%', 'top 30%');
-    fade('footer', 1, 0, 'top 90%', 'top 50%');
+    // Tajin visibility fades (Desktop only)
+    if (window.innerWidth > 900) {
+      const fade = (trigger, from, to, start, end) => gsap.fromTo(stage, { autoAlpha: from }, { autoAlpha: to, ease: 'none', immediateRender: false, scrollTrigger: { trigger, start, end, scrub: true } });
+      fade('.recipes', 1, 0, 'top 70%', 'top 20%');
+      fade('.finale', 0, 1, 'top 70%', 'top 30%');
+      fade('footer', 1, 0, 'top 90%', 'top 50%');
+    }
 
     // Flame Wrap initialization
     if (window.FlameWrap) {
@@ -3749,10 +3812,11 @@ html_content = r'''<!doctype html>
   </script>
 </body>
 </html>
-'''
+"""
 
-target_path = r"C:\Users\Video Editor\.gemini\antigravity\scratch\eskandria-landing-page.html"
-with open(target_path, "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print(f"Successfully generated {target_path} ({len(html_content)} bytes)")
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for fname in ['index.html', 'eskandria-landing-page.html']:
+    target = os.path.join(base_dir, fname)
+    with open(target, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    print(f'Successfully generated {target} ({len(html_content)} bytes)')
