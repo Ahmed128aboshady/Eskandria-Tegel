@@ -110,4 +110,4 @@ Eskandria-Tegel/
   - Mon – Sun: 11:00 – 22:00
   - Friday: 14:00 – 22:00
   - Tuesday: Closed
-- **Weekend Open Buffet:** Saturday & Sunday 12:00 – 16:00 (14.99€)
+- **Cuisine:** 100% Halal Egyptian & Alexandrian Seafood, Charcoal Grill & Pastries

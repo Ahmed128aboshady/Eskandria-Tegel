@@ -2503,7 +2503,7 @@ html_content = r'''<!doctype html>
         <span>Hawawshi & Kebda Eskandrani</span>
         <span>Polish Sweet Pastries</span>
         <span>100% Halal Food</span>
-        <span>Open Buffet 14.99€</span>
+        <span>Clay Pot Seafood Tajin</span>
         <span>Authentic Egyptian Seafood</span>
         <span>Lava Rock Charcoal Grill</span>
         <span>Hawawshi & Kebda Eskandrani</span>
@@ -2530,7 +2530,7 @@ html_content = r'''<!doctype html>
         </p>
         <div class="story__stats">
           <div><b data-count="100">0</b>%<span>Halal Fresh Food</span></div>
-          <div><b data-count="15">0</b>€<span>Weekend Buffet</span></div>
+          <div><b data-count="100">0</b>%<span>Fresh Charcoal Grill</span></div>
           <div><b data-count="40">0</b>+<span>Signature Dishes</span></div>
         </div>
       </div>
@@ -2691,13 +2691,13 @@ html_content = r'''<!doctype html>
           <span class="line"><span class="line-inner"><em>CELEBRATE.</em></span></span>
         </h2>
         <p class="body-copy words">
-          At Eskandria, time slows down. Dip hot bread into creamy hummus, enjoy card and board games with your friends, host family wedding or graduation parties, or savor our famous weekend Open Buffet with unlimited Egyptian specialties for just 14.99€.
+          At Eskandria, time slows down. Dip hot bread into creamy hummus, enjoy card and board games with your friends, host family wedding or graduation parties, or savor our authentic Alexandrian seafood, charcoal grills, and freshly baked Egyptian specialties.
         </p>
       </div>
       <div class="ritual__uses">
         <span><i class="fa fa-dice"></i> Board & Card Games</span>
         <span><i class="fa fa-heart"></i> Halal Celebrations</span>
-        <span><i class="fa fa-utensils"></i> Weekend Buffet 14.99€</span>
+        <span><i class="fa fa-utensils"></i> Authentic Seafood & Grills</span>
         <span><i class="fa fa-smoking"></i> Family Shisha Lounge</span>
         <span><i class="fa fa-birthday-cake"></i> Private Events</span>
         <span><i class="fa fa-ice-cream"></i> Polish Sweets</span>
@@ -2752,7 +2752,7 @@ html_content = r'''<!doctype html>
         <div class="voices__row">
           <span>“The best seafood sayadia and Hawawshi in Berlin!”</span>
           <span>“Endlich echtes ägyptisches Essen – wie in Alexandria.”</span>
-          <span>“The weekend open buffet for 14.99€ is unbeatable.”</span>
+          <span>“The charcoal grilled seafood and tajins are unbeatable.”</span>
           <span>“Kopiec Kreta dessert blew us away. Incredible concept!”</span>
           <span>“Super friendly staff, great family atmosphere and board games.”</span>
           <span>“The best seafood sayadia and Hawawshi in Berlin!”</span>
@@ -2762,7 +2762,7 @@ html_content = r'''<!doctype html>
           <span>“Fresh grilled sea bass done to perfection.”</span>
           <span>“Best Alexandrian street food experience in Germany.”</span>
           <span>“A genuine hidden gem in Berlin Tegel.”</span>
-          <span>“The open buffet was delicious and service was outstanding.”</span>
+          <span>“The seafood feast was delicious and service was outstanding.”</span>
           <span>“Authentic Egyptian taste crafted with real love.”</span>
           <span>“Fresh grilled sea bass done to perfection.”</span>
         </div>
@@ -2779,7 +2779,7 @@ html_content = r'''<!doctype html>
         </figure>
         <figure class="voice">
           <blockquote>
-            “The weekend open buffet is a must-try. Foul, falafel, shakshouka, grilled treats and salads—all fresh and refilled constantly. Great place to play cards with friends afterwards!”
+            “The fresh Alexandrian breakfast and grill dishes are a must-try. Foul, falafel, shakshouka, grilled treats and fresh seafood. Great place to play cards with friends afterwards!”
           </blockquote>
           <figcaption>
             <b>Hannah Weber</b>
@@ -2929,7 +2929,7 @@ html_content = r'''<!doctype html>
           </div>
           <div>
             <h4>Experiences</h4>
-            <a href="#ritual">Weekend Open Buffet (14.99€)</a>
+            <a href="#ritual">Authentic Coastal Dining</a>
             <a href="#ritual">Board & Card Games</a>
             <a href="#visit">Private Parties & Events</a>
             <a href="#ritual">Family Shisha Lounge</a>
