@@ -16,7 +16,7 @@ html_content = r'''<!doctype html>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Eskandria Restaurant Berlin — Authentic Egyptian & Alexandrian Seafood, Lava Charcoal Grill, and Polish European Desserts. Medebacher Weg 24, 13507 Berlin.">
   <meta name="keywords" content="Eskandria, Egyptian restaurant Berlin, Alexandrian seafood, halal food Berlin, Sayadia, Hawawshi, Tegel restaurant">
-  <title>Eskandria Restaurant Berlin | إسكندرية — Egyptian & Alexandrian Food</title>
+  <title>Eskandria Restaurant Berlin | Egyptian & Alexandrian Food</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1756,147 +1756,202 @@ html_content = r'''<!doctype html>
       color: white;
     }
 
+    /* ── FLOATING WHATSAPP BUTTON ── */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 82px;
+      right: 24px;
+      background: #25D366;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .25s ease-in-out, box-shadow .25s;
+    }
+
+    .floating-wa-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+      color: #fff;
+    }
+
     /* ── FULL MENU MODAL ── */
+    /* ── MENU MODAL (reference-design style) ── */
     .menu-modal {
       position: fixed;
       inset: 0;
       z-index: 300;
-      background: rgba(11, 17, 24, 0.94);
-      backdrop-filter: blur(16px);
+      background: #0b1118f5;
+      backdrop-filter: blur(22px);
       display: none;
       overflow-y: auto;
-      padding: 60px var(--gutter);
+      padding: 0;
     }
+    .menu-modal.is-open { display: flex; flex-direction: column; }
 
-    .menu-modal.is-open {
-      display: block;
-    }
-
+    /* ── sticky header ── */
     .menu-modal__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 36px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-      padding-bottom: 24px;
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 28px clamp(20px,5vw,64px) 20px;
+      background: linear-gradient(180deg, rgba(11,17,24,.98) 60%, rgba(11,17,24,0));
+      gap: 20px;
     }
-
     .menu-modal__header h2 {
-      margin: 0;
-      font: 900 2.4rem var(--font-display);
+      margin: 0 0 5px;
+      font: 900 clamp(1.5rem,3vw,2.2rem) var(--font-display);
       color: var(--gold);
+      line-height: 1.1;
     }
-
+    .menu-modal__header p {
+      margin: 0;
+      font-size: .85rem;
+      color: rgba(246,242,234,.55);
+      letter-spacing: .03em;
+    }
     .menu-modal__close {
-      background: var(--ink-2);
-      border: 1px solid rgba(246, 242, 234, 0.3);
+      flex: none;
+      background: rgba(246,242,234,.08);
+      border: 1px solid rgba(246,242,234,.2);
       color: var(--cream);
-      font-size: 1.8rem;
-      width: 50px;
-      height: 50px;
+      font-size: 1.3rem; line-height: 1;
+      width: 44px; height: 44px;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
+      display: grid; place-items: center;
       cursor: pointer;
-      transition: background .3s, transform .3s;
+      transition: background .25s, transform .35s;
     }
+    .menu-modal__close:hover { background: var(--terracotta); transform: rotate(90deg); }
 
-    .menu-modal__close:hover {
-      background: var(--terracotta);
-      transform: rotate(90deg);
-    }
-
+    /* ── chips tab bar ── */
     .menu-tabs {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 16px;
-      margin-bottom: 40px;
+      display: flex; gap: 8px; align-items: center;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 clamp(20px,5vw,64px) 0;
+      margin: 0 0 32px;
     }
-
+    .menu-tabs::-webkit-scrollbar { display: none; }
     .menu-tab-btn {
-      padding: 10px 20px;
-      background: var(--ink-2);
-      border: 1px solid rgba(246, 242, 234, 0.15);
-      color: var(--cream);
-      border-radius: 99px;
-      font: 600 .9rem var(--font-display);
-      white-space: nowrap;
-      transition: all .3s;
+      flex: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid rgba(246,242,234,.15);
+      background: rgba(246,242,234,.06);
+      color: rgba(246,242,234,.6);
+      font-size: 13px; letter-spacing: .02em; white-space: nowrap;
+      cursor: pointer; transition: all .2s ease;
+      -webkit-tap-highlight-color: transparent;
+      font-family: var(--font-display);
     }
-
-    .menu-tab-btn.active,
-    .menu-tab-btn:hover {
-      background: var(--gold);
-      color: var(--ink);
+    .menu-tab-btn:hover { background: rgba(212,175,55,.15); color: var(--cream); border-color: rgba(212,175,55,.35); }
+    .menu-tab-btn.active {
+      background: var(--gold); color: #0b1118;
       border-color: var(--gold);
+      box-shadow: 0 2px 12px rgba(212,175,55,.35);
+      font-weight: 700;
     }
 
+    /* ── menu grid ── */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+      padding: 0 clamp(20px,5vw,64px) 60px;
     }
 
+    /* ── menu card ── */
     .menu-card {
-      background: var(--ink-2);
-      border: 1px solid rgba(246, 242, 234, 0.08);
-      border-radius: 12px;
+      background: rgba(246,242,234,.04);
+      border: 1px solid rgba(246,242,234,.09);
+      border-radius: 18px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform .3s, border-color .3s;
+      display: flex; flex-direction: column;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      cursor: default;
     }
-
     .menu-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--gold);
+      transform: translateY(-5px);
+      border-color: rgba(212,175,55,.45);
+      box-shadow: 0 12px 36px rgba(0,0,0,.45), 0 0 0 1px rgba(212,175,55,.12);
     }
 
-    .menu-card__img {
-      height: 190px;
-      width: 100%;
-      object-fit: cover;
-      background: #111;
+    /* circular dish image */
+    .menu-card__img-wrap {
+      padding: 24px 24px 0;
+      display: flex; justify-content: center;
     }
+    .menu-card__img {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(246,242,234,.06);
+      border: 3px solid rgba(212,175,55,.2);
+      display: block;
+      transition: border-color .3s, transform .3s;
+      box-shadow: 0 8px 28px rgba(0,0,0,.45);
+    }
+    .menu-card:hover .menu-card__img { border-color: rgba(212,175,55,.65); transform: scale(1.03); }
 
     .menu-card__body {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
+      padding: 18px 22px 22px;
+      display: flex; flex-direction: column; flex-grow: 1;
     }
 
+    /* name + price row */
     .menu-card__top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px; margin-bottom: 4px;
     }
-
     .menu-card__top h4 {
       margin: 0;
-      font: 700 1.25rem var(--font-display);
+      font: 700 1.05rem var(--font-display);
+      color: var(--cream);
+      line-height: 1.25;
+    }
+    .menu-card__price {
+      flex: none;
+      font: 800 1.05rem var(--font-display);
+      color: var(--gold);
+      white-space: nowrap;
     }
 
-    .menu-card__top span {
-      font: 800 1.25rem var(--font-display);
+    /* English culinary subtitle */
+    .menu-card__sub {
+      font-family: var(--font-body);
       color: var(--gold);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      margin: 0 0 8px;
+      line-height: 1.35;
     }
 
     .menu-card__desc {
-      margin: 0 0 16px;
-      font-size: .95rem;
-      color: rgba(246, 242, 234, 0.75);
-      line-height: 1.5;
+      margin: 0 0 14px;
+      font-size: .88rem;
+      color: rgba(246,242,234,.6);
+      line-height: 1.55;
+      flex-grow: 1;
     }
 
+    /* tag badges */
     .menu-card__tags {
-      font: var(--mono);
-      font-size: .75rem;
-      color: var(--terracotta);
-      letter-spacing: .06em;
+      display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .menu-card__tag {
+      font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 999px;
+      background: rgba(212,175,55,.1);
+      color: rgba(212,175,55,.8);
+      border: 1px solid rgba(212,175,55,.2);
     }
 
     /* ── TOAST ── */
@@ -1922,45 +1977,436 @@ html_content = r'''<!doctype html>
       opacity: 1;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ══════════════════════════════════════════════
+       RESPONSIVE DESIGN (TABLETS & MOBILE)
+       ══════════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .site-header {
-        grid-template-columns: 1fr auto;
+      :root {
+        --gutter: 20px;
       }
-      nav {
+
+      /* Base overflow protection */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Hide floating scroll meter on mobile */
+      .scroll-meter {
+        display: none !important;
+      }
+
+      /* Header */
+      .site-header {
+        height: 72px;
+        padding: 12px var(--gutter);
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+      .site-header nav {
         display: none;
       }
-      .story,
-      .ingredients,
+      .brand {
+        font-size: 1.15rem;
+        letter-spacing: .08em;
+      }
+      .header-actions {
+        gap: 8px;
+      }
+      .pill {
+        padding: 7px 14px;
+        font-size: .78rem;
+      }
+      .pill__arrow {
+        display: none;
+      }
+
+      /* Floating Tajin */
+      .product-bottle {
+        width: min(56vw, 260px);
+        height: min(56vw, 260px);
+      }
+      .product-halo {
+        width: 60vw;
+        height: 60vw;
+      }
+
+      /* 01 Hero */
+      .hero {
+        padding: 85px var(--gutter) 40px;
+        min-height: 100svh;
+        justify-content: flex-start;
+      }
+      .hero__category {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 14px;
+        margin-bottom: 12px;
+        font-size: .8rem;
+        text-align: center;
+      }
+      .hero__category span {
+        display: inline;
+      }
+      .hero__category span:first-child::after {
+        content: " · ";
+      }
+      .hero__title {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 10px 0 20px;
+        font-size: clamp(2.3rem, 11.5vw, 4rem);
+        line-height: .95;
+        letter-spacing: -.03em;
+        white-space: normal;
+        text-align: center;
+      }
+      .hero__line--l, .hero__line--r {
+        text-align: center;
+        padding: 0;
+      }
+      .hero__location {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: auto;
+        margin-bottom: 14px;
+        text-align: center;
+        font-size: .75rem;
+        line-height: 1.4;
+      }
+      .hero__location strong {
+        font-size: .95rem;
+        margin-bottom: 2px;
+      }
+      .hero__buffet {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .hero__buffet-badge {
+        padding: 6px 14px;
+        font-size: .78rem;
+      }
+      .hero__scroll {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto 10px;
+      }
+
+      /* Marquee */
+      .band {
+        padding: 12px 0;
+        font-size: .9rem;
+      }
+      .band__track {
+        gap: 20px;
+      }
+
+      /* 02 Story */
+      .story {
+        grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 32px;
+      }
+      .story__media {
+        height: 38vh;
+        min-height: 240px;
+        max-height: 340px;
+        margin-top: 10px;
+      }
+      .story__stats {
+        margin-top: 32px;
+        gap: 16px;
+        padding-top: 24px;
+      }
+      .story__stats b {
+        font-size: 2rem;
+      }
+      .story__stats span {
+        font-size: .75rem;
+      }
+
+      /* 03 Ingredients */
+      .ingredients {
+        grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 24px;
+      }
+      .ingredients__media {
+        height: 32vh;
+        min-height: 200px;
+        max-height: 280px;
+      }
+      .ingredient-list {
+        margin-top: 20px;
+        gap: 12px;
+      }
+      .ingredient-list li {
+        padding: 14px 18px;
+        gap: 14px;
+      }
+      .ingredient-list li span {
+        font-size: 1rem;
+      }
+      .ingredient-list li strong {
+        font-size: .95rem;
+      }
+      .ingredients__counter {
+        right: 20px;
+        top: 20px;
+        font-size: 1rem;
+      }
+
+      /* 04 Craft */
       .craft {
         grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 32px;
       }
       .craft__head {
         position: relative;
         top: 0;
       }
+      .craft__rail {
+        left: 14px;
+      }
+      .craft__steps li {
+        padding: 20px 0 20px 42px;
+      }
+      .craft__steps h3 {
+        font-size: 1.15rem;
+      }
+      .craft__steps p {
+        font-size: .88rem;
+      }
+
+      /* 05 Spectrum */
+      .spectrum {
+        padding: 80px var(--gutter) 60px;
+      }
+      .spectrum__word {
+        font-size: clamp(1.8rem, 6.5vw, 3rem);
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .spectrum__ring {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 24px;
+      }
+      .spectrum__ring-val b {
+        font-size: 2.2rem;
+      }
+      .flavor-notes {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .flavor-note {
+        padding: 7px 14px;
+        font-size: .75rem;
+        gap: 8px;
+      }
+      .flavor-note i {
+        width: 40px;
+      }
+      .spectrum__copy {
+        font-size: .95rem;
+        min-height: 60px;
+      }
+
+      /* 06 Atmosphere (Ritual) */
+      .ritual {
+        padding: 80px var(--gutter) 60px;
+      }
+      .ritual__uses {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .ritual__uses span {
+        font-size: .82rem;
+        padding: 8px 14px;
+      }
+
+      /* 07 Recipes Gallery */
+      .recipes {
+        min-height: 80vh;
+      }
+      .recipes__head {
+        top: 80px;
+        left: var(--gutter);
+      }
+      .gallery__hint {
+        bottom: 16px;
+        font-size: .72rem;
+        padding: 6px 14px;
+      }
+
+      /* 08 Voices */
+      .voices {
+        padding: 80px var(--gutter) 60px;
+      }
+      .voices__cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .voice {
+        padding: 20px;
+      }
+      .voice blockquote {
+        font-size: .92rem;
+        line-height: 1.55;
+      }
+      .voices__score b {
+        font-size: 2.6rem;
+      }
+
+      /* 09 Finale & Booking */
+      .finale {
+        padding: 80px var(--gutter) 40px;
+      }
       .booking-grid {
         grid-template-columns: 1fr;
-        padding: 30px;
+        padding: 24px 18px;
+        gap: 28px;
+        border-radius: 16px;
+      }
+      .booking-form {
+        gap: 14px;
+      }
+      .booking-form input,
+      .booking-form select,
+      .booking-form textarea {
+        padding: 12px 14px;
+        font-size: 16px; /* Prevents auto-zoom on iOS */
       }
       .booking-info {
         border-left: none;
         border-top: 1px solid rgba(246, 242, 234, 0.12);
         padding-left: 0;
-        padding-top: 30px;
+        padding-top: 24px;
       }
-      .voices__cards {
-        grid-template-columns: 1fr;
+      .map-frame {
+        height: 220px;
+        border-radius: 12px;
       }
+
+      /* Footer */
       .footer__top {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
       .footer__cols {
         grid-template-columns: 1fr 1fr;
+        gap: 24px;
       }
-      .product-bottle {
-        width: 68vw;
-        height: 68vw;
+      .footer__bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        font-size: .75rem;
+      }
+
+      /* Floating Quick Links Button */
+      .floating-link {
+        bottom: 16px;
+        right: 16px;
+        padding: 9px 15px;
+        font-size: 13px;
+        gap: 6px;
+      }
+
+      /* Floating WhatsApp Button on Mobile */
+      .floating-wa-btn {
+        bottom: 64px;
+        right: 16px;
+        padding: 8px 14px;
+        font-size: 13px;
+        gap: 6px;
+      }
+
+      /* Menu Modal on Mobile */
+      .menu-modal__header {
+        padding: 16px var(--gutter) 12px;
+        gap: 12px;
+      }
+      .menu-modal__header h2 {
+        font-size: 1.35rem;
+      }
+      .menu-modal__header p {
+        font-size: .75rem;
+      }
+      .menu-modal__close {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+      }
+      .menu-tabs {
+        padding: 0 var(--gutter);
+        margin-bottom: 20px;
+        gap: 6px;
+      }
+      .menu-tab-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 var(--gutter) 60px;
+      }
+      .menu-card {
+        border-radius: 14px;
+      }
+      .menu-card__img-wrap {
+        padding: 16px 16px 0;
+      }
+      .menu-card__img {
+        width: 130px;
+        height: 130px;
+      }
+      .menu-card__body {
+        padding: 12px 16px 16px;
+      }
+      .menu-card__top h4 {
+        font-size: .95rem;
+      }
+      .menu-card__price {
+        font-size: .95rem;
+      }
+      .menu-card__desc {
+        font-size: .82rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer__cols {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .story__stats {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .brand {
+        font-size: 1rem;
+      }
+      .pill {
+        padding: 6px 11px;
+        font-size: .72rem;
       }
     }
   </style>
@@ -1973,7 +2419,7 @@ html_content = r'''<!doctype html>
     <div class="intro__mark">
       <span>E</span><span>S</span><span>K</span><span>A</span><span>N</span><span>D</span><span>R</span><span>I</span><span>A</span>
     </div>
-    <p class="intro__ar">مطعم إسكندرية · برلين</p>
+    
     <div class="intro__bar"><i></i></div>
   </div>
 
@@ -1983,20 +2429,20 @@ html_content = r'''<!doctype html>
   <!-- ══ FIXED SITE HEADER ══ -->
   <header class="site-header" data-theme="dark">
     <a class="brand" href="#top">
-      ESKANDRIA <strong class="ar-font">إسكندرية</strong>
+      ESKANDRIA
     </a>
     <nav>
-      <a href="#story">Story · القصة</a>
-      <a href="#inside">Pillars · أسرارنا</a>
-      <a href="#craft">Craft · الشواء</a>
-      <a href="#flavor">Flavors · النكهات</a>
-      <a href="#recipes">Signature · الأطباق</a>
-      <a href="#voices">Reviews · الآراء</a>
-      <a href="#visit">Visit · الحجز</a>
+      <a href="#story">Story</a>
+      <a href="#inside">Pillars</a>
+      <a href="#craft">Craft</a>
+      <a href="#flavor">Flavors</a>
+      <a href="#recipes">Signature</a>
+      <a href="#voices">Reviews</a>
+      <a href="#visit">Visit</a>
     </nav>
     <div class="header-actions">
       <button class="pill" id="openMenuBtn">
-        <span class="pill__label">Full Menu · المنيو</span>
+        <span class="pill__label">Full Menu</span>
         <span class="pill__arrow">→</span>
       </button>
       <a class="pill" href="#visit" style="background: var(--gold); color: var(--ink); border-color: var(--gold);">
@@ -2010,7 +2456,7 @@ html_content = r'''<!doctype html>
     <span class="scroll-meter__number">01</span>
     <span class="scroll-meter__track"><i></i></span>
     <span>09</span>
-    <span class="scroll-meter__label">عروس البحر</span>
+    <span class="scroll-meter__label">Eskandria</span>
   </aside>
 
   <!-- ══ FIXED FLOATING CENTERPIECE (Alexandrian Seafood Tajin) ══ -->
@@ -2032,7 +2478,7 @@ html_content = r'''<!doctype html>
         <span>Authentic Egyptian</span>
         <span>Seafood & Street Cuisine</span>
       </p>
-      <p class="hero__ar">عروس البحر المتوسط</p>
+      
       <h1 class="hero__title">
         <span class="hero__line hero__line--l"><span class="line-inner"><span class="hero__flame">ALEXANDRIA,</span></span></span>
         <span class="hero__line hero__line--r"><span class="line-inner">IN BERLIN.</span></span>
@@ -2052,16 +2498,16 @@ html_content = r'''<!doctype html>
     <!-- ── MARQUEE ── -->
     <div class="band" aria-hidden="true">
       <div class="band__track">
-        <span>Authentic Egyptian Seafood</span><em>صيادية إسكندراني</em>
-        <span>Lava Rock Charcoal Grill</span><em>مشاوي على الفحم</em>
-        <span>Hawawshi & Kebda Eskandrani</span><em>حواوشي وكبدة</em>
-        <span>Polish Sweet Pastries</span><em>حلويات أوروبية</em>
-        <span>100% Halal Food</span><em>طعام حلال</em>
-        <span>Open Buffet 14.99€</span><em>بوفيه مفتوح</em>
-        <span>Authentic Egyptian Seafood</span><em>صيادية إسكندراني</em>
-        <span>Lava Rock Charcoal Grill</span><em>مشاوي على الفحم</em>
-        <span>Hawawshi & Kebda Eskandrani</span><em>حواوشي وكبدة</em>
-        <span>Polish Sweet Pastries</span><em>حلويات أوروبية</em>
+        <span>Authentic Egyptian Seafood</span>
+        <span>Lava Rock Charcoal Grill</span>
+        <span>Hawawshi & Kebda Eskandrani</span>
+        <span>Polish Sweet Pastries</span>
+        <span>100% Halal Food</span>
+        <span>Open Buffet 14.99€</span>
+        <span>Authentic Egyptian Seafood</span>
+        <span>Lava Rock Charcoal Grill</span>
+        <span>Hawawshi & Kebda Eskandrani</span>
+        <span>Polish Sweet Pastries</span>
       </div>
     </div>
 
@@ -2069,9 +2515,9 @@ html_content = r'''<!doctype html>
     <section class="chapter story" id="story" data-chapter="2" data-theme="dark">
       <figure class="story__media media" aria-hidden="true">
         <img src="eskandria_assets/harbor_alexandria.webp" alt="Boats in Alexandria harbor near Qaitbay Citadel" loading="lazy">
-        <figcaption>Alexandria Harbour & Citadel · <span class="ar-font">الإسكندرية</span></figcaption>
+        <figcaption>Alexandria Harbour & Citadel</figcaption>
       </figure>
-      <div class="chapter-tag"><span class="chapter-tag__num">01</span> Heritage · <span class="ar-font">الأصالة</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">01</span> Heritage</div>
       <div class="story__copy">
         <p class="kicker">From the Mediterranean Sea to Germany</p>
         <h2 class="split">
@@ -2110,7 +2556,7 @@ html_content = r'''<!doctype html>
           <span>Oven Clay Pots & Molokhia</span>
         </figcaption>
       </figure>
-      <div class="chapter-tag"><span class="chapter-tag__num">02</span> The Pillars · <span class="ar-font">الأسرار</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">02</span> The Pillars</div>
       <div class="ingredients__headline">
         <p class="kicker">Pure Elements. Honest Fire.</p>
         <h2 class="split" style="color: var(--ink);">
@@ -2122,25 +2568,25 @@ html_content = r'''<!doctype html>
       <ol class="ingredient-list">
         <li class="is-on">
           <span>01</span>
-          <strong>Fresh Seafood <i>صيد البحر</i></strong>
+          <strong>Fresh Seafood</strong>
           <small>Sea bass, dorade, calamari, jumbo shrimp & mussels</small>
           <b></b>
         </li>
         <li>
           <span>02</span>
-          <strong>Coastal Aromatics <i>ثوم وكمون ولمون</i></strong>
+          <strong>Coastal Aromatics</strong>
           <small>Alexandrian garlic paste, roasted cumin & coriander</small>
           <b></b>
         </li>
         <li>
           <span>03</span>
-          <strong>Pure Sesame Tahina <i>طحينة سمسم نقية</i></strong>
+          <strong>Pure Sesame Tahina</strong>
           <small>Stone-ground tahina, extra-virgin olive oil & sumac</small>
           <b></b>
         </li>
         <li>
           <span>04</span>
-          <strong>Clay Tajins & Baladi Bread <i>الفخار والعيش البلدي</i></strong>
+          <strong>Clay Tajins & Baladi Bread</strong>
           <small>Hand-baked breads, earthenware casseroles & rich molokhia</small>
           <b></b>
         </li>
@@ -2150,9 +2596,9 @@ html_content = r'''<!doctype html>
 
     <!-- ── 04 CRAFT (LAVA GRILL & FIRE) ── -->
     <section class="chapter craft" id="craft" data-chapter="4" data-theme="dark">
-      <div class="chapter-tag"><span class="chapter-tag__num">03</span> The Craft · <span class="ar-font">سر الصنعة</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">03</span> The Craft</div>
       <div class="craft__head">
-        <p class="kicker">Fire, Earth & Patience · <span class="ar-font">فن الطهي</span></p>
+        <p class="kicker">Fire, Earth & Patience</p>
         <h2 class="split">
           <span class="line"><span class="line-inner">LAVA GRILL.</span></span>
           <span class="line"><span class="line-inner"><em>CLAY OVEN.</em></span></span>
@@ -2170,7 +2616,7 @@ html_content = r'''<!doctype html>
         <li>
           <span class="craft__num">01</span>
           <div>
-            <h3>The 12-Hour Marinade <em class="ar-font">التتبيلة السكندرية</em></h3>
+            <h3>The 12-Hour Marinade </h3>
             <p>Fresh whole fish, calamari and meats are marinated in fresh lemon juice, garlic cloves, cumin and sea salt.</p>
             <small>Cold infuse · 12 Hours</small>
           </div>
@@ -2178,7 +2624,7 @@ html_content = r'''<!doctype html>
         <li>
           <span class="craft__num">02</span>
           <div>
-            <h3>Lava Stone Sizzle <em class="ar-font">شواية الحمم البركانية</em></h3>
+            <h3>Lava Stone Sizzle </h3>
             <p>High radiant heat seals the juices instantly. Kofta, Shish Tawook, and Lamb Chops get that signature smokiness.</p>
             <small>400°C · Lava Coals</small>
           </div>
@@ -2186,7 +2632,7 @@ html_content = r'''<!doctype html>
         <li>
           <span class="craft__num">03</span>
           <div>
-            <h3>Slow Earthenware Bake <em class="ar-font">فرن الفخار البطيء</em></h3>
+            <h3>Slow Earthenware Bake </h3>
             <p>Seafood, pasta béchamel and rice tajins slowly bubble in authentic clay pots to lock in coastal depth.</p>
             <small>Wood & Ceramic Bake</small>
           </div>
@@ -2194,7 +2640,7 @@ html_content = r'''<!doctype html>
         <li>
           <span class="craft__num">04</span>
           <div>
-            <h3>The Feast Served Hot <em class="ar-font">التقديم الساخن</em></h3>
+            <h3>The Feast Served Hot </h3>
             <p>Brought sizzling straight to your table with steaming sayadia rice, freshly puffed baladi bread, and salads.</p>
             <small>Direct to Table</small>
           </div>
@@ -2204,7 +2650,7 @@ html_content = r'''<!doctype html>
 
     <!-- ── 05 SPECTRUM (FLAVOR PROFILE) ── -->
     <section class="chapter spectrum" id="flavor" data-chapter="5" data-theme="dark">
-      <div class="chapter-tag"><span class="chapter-tag__num">04</span> The Spectrum · <span class="ar-font">طيف النكهات</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">04</span> The Spectrum</div>
       <h2 class="spectrum__word" aria-label="Seafood Umami, Alexandrian Spices, Fresh Citrus">
         <span data-word="0">UMAMI</span><span data-word="1">SPICE</span><span data-word="2">CITRUS</span>
       </h2>
@@ -2236,8 +2682,8 @@ html_content = r'''<!doctype html>
 
     <!-- ── 06 RITUAL (DINING & AMBIANCE) ── -->
     <section class="chapter ritual" id="ritual" data-chapter="6" data-theme="red">
-      <div class="chapter-tag"><span class="chapter-tag__num">05</span> The Atmosphere · <span class="ar-font">لمة العيلة</span></div>
-      <div class="ritual__number">هنا</div>
+      <div class="chapter-tag"><span class="chapter-tag__num">05</span> The Atmosphere</div>
+      <div class="ritual__number">Here</div>
       <div class="ritual__copy">
         <p class="kicker">More than just a meal</p>
         <h2 class="split">
@@ -2268,7 +2714,7 @@ html_content = r'''<!doctype html>
         <canvas class="gallery__front gallery__layer"></canvas>
         <p class="gallery__hint">Scroll to browse dishes · Click to inspect recipe · Drag to tug</p>
       </div>
-      <div class="chapter-tag"><span class="chapter-tag__num">06</span> Signature Dishes · <span class="ar-font">أطباقنا</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">06</span> Signature Dishes</div>
       <div class="recipes__head">
         <p class="kicker">Fresh from the kitchen</p>
         <h2 class="split"><span class="line"><span class="line-inner">FEAST WITH <em>PASSION.</em></span></span></h2>
@@ -2277,7 +2723,7 @@ html_content = r'''<!doctype html>
       
       <div class="recipes__actions">
         <button class="btn-action" id="viewFullMenuBtn">
-          <i class="fa fa-book-open"></i> View Full Menu (المنيو الكامل)
+          <i class="fa fa-book-open"></i> View Full Menu
         </button>
         <a class="btn-action btn-action--outline" href="https://eskandria-restaurant.odoo.com/our-links" target="_blank">
           <i class="fa fa-bolt"></i> Order Online
@@ -2289,7 +2735,7 @@ html_content = r'''<!doctype html>
 
     <!-- ── 08 VOICES (REVIEWS & RATINGS) ── -->
     <section class="chapter voices" id="voices" data-chapter="8" data-theme="dark">
-      <div class="chapter-tag"><span class="chapter-tag__num">07</span> Guest Reviews · <span class="ar-font">آراء الضيوف</span></div>
+      <div class="chapter-tag"><span class="chapter-tag__num">07</span> Guest Reviews</div>
       <div class="voices__head">
         <p class="kicker">Loved by Locals, Trusted by Travelers</p>
         <h2 class="split">
@@ -2313,11 +2759,11 @@ html_content = r'''<!doctype html>
           <span>“Endlich echtes ägyptisches Essen – wie in Alexandria.”</span>
         </div>
         <div class="voices__row voices__row--rev">
-          <span class="ar-font">«أحلى كبدة وحواوشي إسكندراني في ألمانيا كلها»</span>
           <span>“Fresh grilled sea bass done to perfection.”</span>
-          <span class="ar-font">«البوفيه المفتوح تحفة والخدمة ممتازة»</span>
+          <span>“Best Alexandrian street food experience in Germany.”</span>
           <span>“A genuine hidden gem in Berlin Tegel.”</span>
-          <span class="ar-font">«طعم مصر الأصلي على أصوله»</span>
+          <span>“The open buffet was delicious and service was outstanding.”</span>
+          <span>“Authentic Egyptian taste crafted with real love.”</span>
           <span>“Fresh grilled sea bass done to perfection.”</span>
         </div>
       </div>
@@ -2355,52 +2801,78 @@ html_content = r'''<!doctype html>
     <!-- ── 09 FINALE & BOOKING ── -->
     <section class="chapter finale" id="visit" data-chapter="9" data-theme="dark">
       <div class="finale__glow" aria-hidden="true"></div>
-      <p class="finale__note">Reserve Your Table · <span class="ar-font">احجز طاولتك</span></p>
+      <p class="finale__note">Online Reservation · تسجيل الحجز الفوري</p>
       <h2 class="split">
-        <span class="line"><span class="line-inner">EXPERIENCE ALEXANDRIA</span></span>
-        <span class="line"><span class="line-inner"><em>IN BERLIN TODAY.</em></span></span>
+        <span class="line"><span class="line-inner">RESERVE YOUR TABLE</span></span>
+        <span class="line"><span class="line-inner"><em>DIRECT VIA WHATSAPP.</em></span></span>
       </h2>
 
       <!-- Booking Card -->
       <div class="booking-grid">
         <div class="booking-form">
-          <h3>Table Reservation</h3>
-          <p>Book online now or call us directly. We welcome individual diners, families, and private event celebrations.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+              <span>Table Reservation</span>
+              <span style="font-size: 1.1rem; color: var(--gold); font-weight: 500;">· حجز طاولة</span>
+            </h3>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #25D366; padding: 5px 12px; border-radius: 99px; font-weight: 700;">
+              <i class="fab fa-whatsapp"></i> +49 15567 318173
+            </span>
+          </div>
+          <p style="margin-bottom: 24px;">سجّل بيانات حجزك وسيتم إرسالها وتأكيدها فوراً عبر واتساب، أو راسلنا مباشرة لأي مناسبات وتجمعات عائلية.</p>
           <form id="reservationForm" onsubmit="handleReserve(event)">
             <div class="form-row">
               <div class="form-group">
-                <label>Your Name *</label>
-                <input type="text" id="resName" required placeholder="Full Name">
+                <label>Full Name · الاسم *</label>
+                <input type="text" id="resName" required placeholder="Full Name / اسمك الكريم">
               </div>
               <div class="form-group">
-                <label>Phone / WhatsApp *</label>
-                <input type="tel" id="resPhone" required placeholder="+49 ...">
+                <label>Phone / WhatsApp · الهاتف *</label>
+                <input type="tel" id="resPhone" required placeholder="+49 15567 ...">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label>Date *</label>
+                <label>Reservation Date · التاريخ *</label>
                 <input type="date" id="resDate" required>
               </div>
               <div class="form-group">
-                <label>Time & Guests *</label>
+                <label>Time & Guests · الوقت والأفراد *</label>
                 <select id="resGuests" required>
-                  <option value="2 Guests - 18:00">2 Guests · 18:00</option>
-                  <option value="4 Guests - 19:00">4 Guests · 19:00</option>
-                  <option value="6 Guests - 20:00">6 Guests · 20:00</option>
-                  <option value="Large Group (8+)">Large Group (8+)</option>
-                  <option value="Open Buffet (Sat/Sun 12:00-16:00)">Weekend Open Buffet (14.99€)</option>
+                  <option value="2 Guests · 18:00">2 Guests · 18:00 (شخصين)</option>
+                  <option value="2 Guests · 19:30">2 Guests · 19:30 (شخصين)</option>
+                  <option value="3 to 4 Guests · 18:30">3 to 4 Guests · 18:30 (٣-٤ أشخاص)</option>
+                  <option value="3 to 4 Guests · 20:00">3 to 4 Guests · 20:00 (٣-٤ أشخاص)</option>
+                  <option value="5 to 6 Guests · 19:00">5 to 6 Guests · 19:00 (عائلة / ٥-٦ أشخاص)</option>
+                  <option value="Large Group / Event (7+ Guests)">Large Group / Event (7+ Guests · مناسبة/مجموعة)</option>
+                  <option value="Weekend Special Gathering">Weekend Special Gathering (تجمع نهاية الأسبوع)</option>
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 10px;">
-              <i class="fa fa-calendar-check"></i> Confirm Reservation
+            <div class="form-group">
+              <label>Special Requests · ملاحظات أو طلبات خاصة (اختياري)</label>
+              <input type="text" id="resNotes" placeholder="مثلاً: طاولة عائلية، مناسبة ميلاد، كراسي أطفال...">
+            </div>
+            <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 10px; background: #25D366; color: #fff; border: 1px solid #25D366; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35); font-weight: 800; font-size: 1rem; gap: 10px; cursor: pointer;">
+              <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> تأكيد الحجز وإرساله عبر واتساب · Reserve via WhatsApp
             </button>
+            <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: rgba(246, 242, 234, 0.65);">
+              أو راسلنا على واتساب مباشرة: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: #25D366; font-weight: 700; text-decoration: underline;">+49 15567 318173</a>
+            </div>
           </form>
         </div>
 
         <div class="booking-info">
           <div>
+            <div class="info-item" style="background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.3); border-radius: 12px; padding: 18px 20px; margin-bottom: 22px;">
+              <h4 style="color: #25D366; margin-bottom: 6px;"><i class="fab fa-whatsapp"></i> WhatsApp Service</h4>
+              <p style="font-size: 0.95rem; margin-bottom: 12px;">
+                Direct inquiries, table reservations & catering:
+              </p>
+              <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" class="btn-action" style="background: #25D366; color: white; border-color: #25D366; padding: 10px 20px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); text-decoration: none; display: inline-flex;">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Chat: +49 15567 318173
+              </a>
+            </div>
             <div class="info-item">
               <h4><i class="fa fa-map-marker-alt"></i> Location</h4>
               <p>
@@ -2411,7 +2883,7 @@ html_content = r'''<!doctype html>
             <div class="info-item">
               <h4><i class="fa fa-phone-alt"></i> Contact</h4>
               <p>
-                Phone / WhatsApp: <a href="tel:+4915567318173" style="color: var(--gold); font-weight: 700;">+49 15567 318173</a><br>
+                Phone / WhatsApp: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: var(--gold); font-weight: 700;">+49 15567 318173</a><br>
                 Email: <a href="mailto:eskandria.tegel@gmail.com">eskandria.tegel@gmail.com</a>
               </p>
             </div>
@@ -2434,7 +2906,7 @@ html_content = r'''<!doctype html>
       <footer>
         <div class="footer__top">
           <div class="footer__brand">
-            <a class="brand" href="#top">ESKANDRIA <strong class="ar-font">إسكندرية</strong></a>
+            <a class="brand" href="#top">ESKANDRIA</a>
             <p>
               Authentic Egyptian coastal seafood, charcoal lava grill, and European Polish pastries.<br>
               Taste the heritage of Alexandria in the heart of Berlin.
@@ -2480,11 +2952,15 @@ html_content = r'''<!doctype html>
         <div class="footer__bottom">
           <span>© 2026 Eskandria Restaurant · Medebacher Weg 24, 13507 Berlin</span>
           <span>100% Halal Certified · Mediterranean & Egyptian Cuisine</span>
-          <span class="ar-font">إسكندرية · عروس البحر المتوسط</span>
-        </div>
+          </div>
       </footer>
     </section>
   </main>
+
+  <!-- ══ FLOATING WHATSAPP BUTTON ══ -->
+  <a href="https://wa.me/4915567318173?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9%20%D8%A8%D8%B1%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D8%AC%D8%B2%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Book Table or Chat on WhatsApp (+49 15567 318173)">
+    <i class="fab fa-whatsapp"></i> احجز واتساب
+  </a>
 
   <!-- ══ FLOATING QUICK LINKS (From original Odoo) ══ -->
   <a href="https://eskandria-restaurant.odoo.com/our-links" class="floating-link" target="_blank">
@@ -2495,7 +2971,7 @@ html_content = r'''<!doctype html>
   <div class="menu-modal" id="menuModal">
     <div class="menu-modal__header">
       <div>
-        <h2>Eskandria Menu · قائمة طعام إسكندرية</h2>
+        <h2>Eskandria Menu</h2>
         <p style="margin: 6px 0 0; color: rgba(246, 242, 234, 0.7);">
           Fresh February Edition · Authentic Egyptian street specialties, fresh seafood, lava charcoal grill & desserts.
         </p>
@@ -2505,14 +2981,14 @@ html_content = r'''<!doctype html>
 
     <!-- Category Tabs -->
     <div class="menu-tabs">
-      <button class="menu-tab-btn active" data-tab="all">All Dishes (الكل)</button>
-      <button class="menu-tab-btn" data-tab="seafood">Seafood & Fish (أسماك وبحريات)</button>
-      <button class="menu-tab-btn" data-tab="grill">Lava Charcoal Grill (مشاوي الحمم)</button>
-      <button class="menu-tab-btn" data-tab="street">Street Food (أكلات الشارع)</button>
-      <button class="menu-tab-btn" data-tab="tajin">Baked Tajins (طواجن الفرن)</button>
-      <button class="menu-tab-btn" data-tab="breakfast">Breakfast & Mezze (فطور ومقبلات)</button>
-      <button class="menu-tab-btn" data-tab="dessert">European & Oriental Sweets (حلويات)</button>
-      <button class="menu-tab-btn" data-tab="drinks">Vibe Drinks & Shisha (مشروبات وشيشة)</button>
+      <button class="menu-tab-btn active" data-tab="all">All Dishes</button>
+      <button class="menu-tab-btn" data-tab="seafood">Seafood &amp; Fish</button>
+      <button class="menu-tab-btn" data-tab="grill">Lava Charcoal Grill</button>
+      <button class="menu-tab-btn" data-tab="street">Street Food</button>
+      <button class="menu-tab-btn" data-tab="tajin">Baked Tajins</button>
+      <button class="menu-tab-btn" data-tab="breakfast">Breakfast &amp; Mezze</button>
+      <button class="menu-tab-btn" data-tab="dessert">European &amp; Oriental Sweets</button>
+      <button class="menu-tab-btn" data-tab="drinks">Vibe Drinks &amp; Shisha</button>
     </div>
 
     <!-- Menu Grid -->
@@ -2713,8 +3189,9 @@ html_content = r'''<!doctype html>
           bctx.stroke();
 
           // Render cards
-          const cardW = Math.min(W * 0.72, 420);
-          const cardH = cardW * 1.35;
+          const isMob = W < 600;
+          const cardW = Math.min(W * (isMob ? 0.84 : 0.72), 420);
+          const cardH = cardW * (isMob ? 1.38 : 1.35);
           const spacing = cardW + 60;
           const totalW = items.length * spacing;
           const startX = (W / 2) - (progress * (totalW - W * 0.5));
@@ -2754,16 +3231,17 @@ html_content = r'''<!doctype html>
             bctx.fillText('SIGNATURE ' + item.idx, 20, cardH * 0.65);
 
             bctx.fillStyle = '#f6f2ea';
-            bctx.font = '800 20px Alexandria, sans-serif';
-            bctx.fillText(item.title, 20, cardH * 0.73);
+            bctx.font = (isMob ? '800 16px' : '800 20px') + ' Alexandria, sans-serif';
+            bctx.fillText(item.title, 16, cardH * 0.73);
 
             bctx.fillStyle = '#d4af37';
-            bctx.font = '700 16px Cairo, sans-serif';
-            bctx.fillText(item.ar, 20, cardH * 0.80);
+            bctx.font = (isMob ? '600 11px' : '600 13px') + ' Manrope, sans-serif';
+            bctx.fillText(item.sub || '', 16, cardH * 0.80);
 
             bctx.fillStyle = 'rgba(246,242,234,0.7)';
-            bctx.font = '400 13px Manrope, sans-serif';
-            bctx.fillText(item.ingredients.join(' · '), 20, cardH * 0.88);
+            bctx.font = (isMob ? '400 11px' : '400 13px') + ' Manrope, sans-serif';
+            const ingList = isMob ? item.ingredients.slice(0, 2).join(' · ') : item.ingredients.join(' · ');
+            bctx.fillText(ingList, 16, cardH * 0.88);
 
             bctx.fillStyle = '#ff9179';
             bctx.font = '600 12px Manrope, sans-serif';
@@ -2821,7 +3299,7 @@ html_content = r'''<!doctype html>
     const stage = $('.product-stage');
 
     const CHAPTER_LABELS = [
-      'عروس البحر', 'الأصالة', 'الأسرار', 'سر الصنعة', 'طيف النكهات', 'لمة العيلة', 'أطباقنا', 'آراء الضيوف', 'احجز طاولتك'
+      'Alexandria', 'Heritage', 'Pillars', 'The Craft', 'Flavors', 'Atmosphere', 'Signature', 'Reviews', 'Visit Us'
     ];
 
     /* Split body copy into words for scrubbed reveals */
@@ -2887,7 +3365,7 @@ html_content = r'''<!doctype html>
       const P = ctx.conditions.desk ? [
         { x: '0vw',   y: '3vh',   scale: 0.95, rotation: 0 },    // 01 hero
         { x: '-24vw', y: '6vh',   scale: 0.72, rotation: -8 },   // 02 story
-        { x: '-27vw', y: '5vh',   scale: 0.68, rotation: 6 },    // 03 ingredients
+        { x: '27vw',  y: '5vh',   scale: 0.68, rotation: -6 },   // 03 ingredients
         { x: '26vw',  y: '6vh',   scale: 0.65, rotation: 8 },    // 04 craft
         { x: '19vw',  y: '0vh',   scale: 0.70, rotation: 6 },    // 05 spectrum
         { x: '-24vw', y: '6vh',   scale: 0.88, rotation: -12 },  // 06 ritual
@@ -2895,16 +3373,16 @@ html_content = r'''<!doctype html>
         { x: '-15vw', y: '-30vh', scale: 0.30, rotation: -6 },   // 08 voices
         { x: '0vw',   y: '-14vh', scale: 0.60, rotation: 0 },    // 09 finale
       ] : [
-        { x: '0vw',   y: '4vh',   scale: 0.85, rotation: 0 },
-        { x: '0vw',   y: '-22vh', scale: 0.44, rotation: -6 },
-        { x: '34vw',  y: '-36vh', scale: 0.28, rotation: 5 },
-        { x: '34vw',  y: '-40vh', scale: 0.24, rotation: 8 },
-        { x: '-34vw', y: '2vh',   scale: 0.28, rotation: 8 },
-        { x: '34vw',  y: '6vh',   scale: 0.32, rotation: -10 },
-        { x: '34vw',  y: '-36vh', scale: 0.20, rotation: 12 },
-        { x: '34vw',  y: '-36vh', scale: 0.20, rotation: -6 },
-        { x: '0vw',   y: '-14vh', scale: 0.44, rotation: 0 },
-      ];
+          { x: '0vw',   y: '2vh',   scale: 0.60, rotation: 0 },   // 01 hero
+          { x: '0vw',   y: '-26vh', scale: 0.40, rotation: -6 },  // 02 story
+          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -5 },  // 03 ingredients
+          { x: '26vw',  y: '-35vh', scale: 0.24, rotation: 6 },   // 04 craft
+          { x: '0vw',   y: '-24vh', scale: 0.32, rotation: 0 },   // 05 spectrum
+          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -8 },  // 06 ritual
+          { x: '26vw',  y: '-38vh', scale: 0.20, rotation: 10 },  // 07 recipes
+          { x: '0vw',   y: '-34vh', scale: 0.22, rotation: 0 },   // 08 voices
+          { x: '0vw',   y: '-14vh', scale: 0.40, rotation: 0 },   // 09 finale
+        ];
 
       gsap.set(pose, P[0]);
       chapters.forEach((sec, i) => {
@@ -3022,7 +3500,7 @@ html_content = r'''<!doctype html>
         idx: '01',
         image: 'eskandria_assets/sayadia_seafood.webp',
         title: 'Sayadia Seafood Tajin',
-        ar: 'صيادية إسكندراني بالسي فود',
+        sub: 'Alexandrian Coastal Seafood Tajin',
         ingredients: ['Jumbo Prawns', 'Calamari · Fish Fillet', 'Dark Caramelized Onion Rice'],
         time: '20 min', serves: 2
       },
@@ -3030,7 +3508,7 @@ html_content = r'''<!doctype html>
         idx: '02',
         image: 'eskandria_assets/mahshi_calamari.webp',
         title: 'Mahshi Calamari',
-        ar: 'كالاماري محشي بالأرز والبهارات',
+        sub: 'Herb Rice Stuffed Squid Tubes',
         ingredients: ['Tender Squid', 'Egyptian Herb Rice', 'Coastal Spiced Broth'],
         time: '25 min', serves: 2
       },
@@ -3038,7 +3516,7 @@ html_content = r'''<!doctype html>
         idx: '03',
         image: 'eskandria_assets/page_9_img_4.png',
         title: 'Hawawshi Eskandrani',
-        ar: 'حواوشي إسكندراني بالجبنة',
+        sub: 'Alexandrian Spiced Dough & Melted Cheese',
         ingredients: ['Fresh Kneaded Dough', 'Spiced Veal Mince', 'Melted Mozzarella · Fries'],
         time: '15 min', serves: 1
       },
@@ -3046,7 +3524,7 @@ html_content = r'''<!doctype html>
         idx: '04',
         image: 'eskandria_assets/page_15_img_3.png',
         title: 'Kopiec Kreta (Mole Hill)',
-        ar: 'كعكة التل البولندية الأصلية',
+        sub: 'Traditional Polish Mole Hill Cake',
         ingredients: ['Chocolate Sponge', 'Fresh Cream · Bananas', 'Dark Cocoa Crumbs'],
         time: 'Fresh daily', serves: 2
       }
@@ -3090,78 +3568,80 @@ html_content = r'''<!doctype html>
     /* ═══════════════════════════════ COMPLETE MENU DATA & MODAL ═══ */
     const MENU_DATABASE = [
       // Seafood & Fish
-      { cat: 'seafood', name: 'Wolfsbarsch (300-400g)', ar: 'سمك قاروص ملكي', price: '20.90€', desc: 'Fresh Mediterranean sea bass, prepared your way: Singari with vegetables, Charcoal grilled with lemon oil, or crispy Talhesa.', tags: 'GF, L, F · Serves 1', img: 'eskandria_assets/page_6_img_4.png' },
-      { cat: 'seafood', name: 'Dorade Royale (300-400g)', ar: 'سمك دنيس ملكي', price: '20.90€', desc: 'Fresh whole Dorade roasted over coals with Egyptian coastal herb paste and garlic lemon glaze. Served with sayadia rice & salad.', tags: 'GF, L, F · Serves 1', img: 'eskandria_assets/page_6_img_5.png' },
-      { cat: 'seafood', name: 'Sayadia Seafood Tajin', ar: 'صيادية إسكندراني بالسي فود', price: '16.90€', desc: 'Traditional dark onion-infused Alexandrian rice with grilled seafood, caramelized onions, and Egyptian coastal spices.', tags: 'K, F, G · Signature', img: 'eskandria_assets/sayadia_seafood.webp' },
-      { cat: 'seafood', name: 'Mahshi Calamari', ar: 'كالاماري محشي', price: '17.90€', desc: 'Tender squid tubes stuffed with aromatic herb rice and spices, baked in pottery to rich perfection.', tags: 'K, F, G · Coastal Gem', img: 'eskandria_assets/mahshi_calamari.webp' },
-      { cat: 'seafood', name: 'Kees Gambari (Seafood Bag)', ar: 'كيس جمبري بالصلصة الخاصة', price: '22.90€', desc: 'Tender prawns and seafood baked with sweet corn and fiery Egyptian sauce in a steam bag. Served steaming hot with rice.', tags: 'K, F, L · Must Try', img: 'eskandria_assets/page_7_img_3.png' },
-      { cat: 'seafood', name: 'Estakoza Eskandrani (400g)', ar: 'استاكوزا إسكندراني', price: '34.90€', desc: 'Whole fresh lobster, boiled and baked with house butter glaze, herbs, and lemon. Served with salads and sauces.', tags: 'K, F, L · Luxury', img: 'eskandria_assets/page_7_img_6.png' },
-      { cat: 'seafood', name: 'Roz Seafood (Paella)', ar: 'أرز سي فود على الطريقة المصرية', price: '18.90€', desc: 'Fragrant rice gently simmered with king prawns, calamari, white fish fillet, and mussels with extra virgin olive oil.', tags: 'K, F, G · Popular', img: 'eskandria_assets/page_7_img_5.png' },
-      { cat: 'seafood', name: 'Gandofli Eskandrani', ar: 'جندوفلي إسكندراني بالثوم والليمون', price: '14.90€', desc: 'Fresh clams simmered in piquant Alexandrian garlic, diced bell pepper, fresh tomato, and parsley broth.', tags: 'K, F · Fresh Catch', img: 'eskandria_assets/page_7_img_2.png' },
+      { cat: 'seafood', name: 'Wolfsbarsch (300-400g)', sub: 'Royal Mediterranean Sea Bass', price: '20.90€', desc: 'Fresh Mediterranean sea bass, prepared your way: Singari with vegetables, Charcoal grilled with lemon oil, or crispy Talhesa.', tags: 'GF, L, F · Serves 1', img: 'eskandria_assets/page_6_img_4.png' },
+      { cat: 'seafood', name: 'Dorade Royale (300-400g)', sub: 'Royal Sea Bream Charcoal Roasted', price: '20.90€', desc: 'Fresh whole Dorade roasted over coals with Egyptian coastal herb paste and garlic lemon glaze. Served with sayadia rice & salad.', tags: 'GF, L, F · Serves 1', img: 'eskandria_assets/page_6_img_5.png' },
+      { cat: 'seafood', name: 'Sayadia Seafood Tajin', sub: 'Coastal Seafood Sayadia Casserole', price: '16.90€', desc: 'Traditional dark onion-infused Alexandrian rice with grilled seafood, caramelized onions, and Egyptian coastal spices.', tags: 'K, F, G · Signature', img: 'eskandria_assets/sayadia_seafood.webp' },
+      { cat: 'seafood', name: 'Mahshi Calamari', sub: 'Herb-Stuffed Calamari', price: '17.90€', desc: 'Tender squid tubes stuffed with aromatic herb rice and spices, baked in pottery to rich perfection.', tags: 'K, F, G · Coastal Gem', img: 'eskandria_assets/mahshi_calamari.webp' },
+      { cat: 'seafood', name: 'Kees Gambari (Seafood Bag)', sub: 'Alexandrian Cajun-Spiced Shrimp Boil', price: '22.90€', desc: 'Tender prawns and seafood baked with sweet corn and fiery Egyptian sauce in a steam bag. Served steaming hot with rice.', tags: 'K, F, L · Must Try', img: 'eskandria_assets/page_7_img_3.png' },
+      { cat: 'seafood', name: 'Estakoza Eskandrani (400g)', sub: 'Mediterranean Butter-Glazed Lobster', price: '34.90€', desc: 'Whole fresh lobster, boiled and baked with house butter glaze, herbs, and lemon. Served with salads and sauces.', tags: 'K, F, L · Luxury', img: 'eskandria_assets/page_7_img_6.png' },
+      { cat: 'seafood', name: 'Roz Seafood (Paella)', sub: 'Egyptian Coastal Seafood Paella', price: '18.90€', desc: 'Fragrant rice gently simmered with king prawns, calamari, white fish fillet, and mussels with extra virgin olive oil.', tags: 'K, F, G · Popular', img: 'eskandria_assets/page_7_img_5.png' },
+      { cat: 'seafood', name: 'Gandofli Eskandrani', sub: 'Alexandrian Garlic & Lemon Clams', price: '14.90€', desc: 'Fresh clams simmered in piquant Alexandrian garlic, diced bell pepper, fresh tomato, and parsley broth.', tags: 'K, F · Fresh Catch', img: 'eskandria_assets/page_7_img_2.png' },
 
       // Lava Grill
-      { cat: 'grill', name: 'Moza Kharouf (Lamb Shank)', ar: 'موزة خروف مشوية', price: '21.90€', desc: 'Slow-braised 300-400g tender lamb shank slowly finished over lava coals. Meltingly tender with oriental rice and nuts.', tags: 'G, E, SM · Royal Dish', img: 'eskandria_assets/page_8_img_10.png' },
-      { cat: 'grill', name: 'Kofta Eskandrani', ar: 'كفتة مشوية على الفحم', price: '17.90€', desc: 'Skewers of seasoned minced veal grilled over charcoal coals, served with Batata Harra or rice, salad and tahina.', tags: 'G, E, SM · Charcoal Sizzle', img: 'eskandria_assets/page_8_img_3.png' },
-      { cat: 'grill', name: 'Shish Kebab', ar: 'شيش كباب بتلو', price: '18.90€', desc: 'Marinated tender veal cubes grilled over open flames with grilled vegetables, garlic tahina, and hot baladi bread.', tags: 'G, E, SM · Tender Meat', img: 'eskandria_assets/page_8_img_7.png' },
-      { cat: 'grill', name: 'Shish Tawook', ar: 'شيش طاووق على الفحم', price: '17.90€', desc: 'Succulent chicken breast cubes marinated in garlic, yogurt, and spices. Served with spicy potatoes and salad.', tags: 'G, E, SM · Family Favorite', img: 'eskandria_assets/page_8_img_2.png' },
-      { cat: 'grill', name: 'Mix Grill Platter', ar: 'مشاوي مشكلة 4 أصناف', price: '20.90€', desc: 'Generous platter featuring 4 meats: tender kebab, chicken tawook, spiced kofta, and succulent lamb cutlets.', tags: 'G, E, SM · The Big Feast', img: 'eskandria_assets/page_8_img_6.png' },
-      { cat: 'grill', name: 'Kotelett Mashwi (Lamb Chops)', ar: 'ريش ضاني مشوية', price: '21.90€', desc: '4 delicate marinated lamb chops grilled over blazing coals. Juicy, fragrant, served with salad and bread.', tags: 'G, E, SM · Pure Flavor', img: 'eskandria_assets/page_8_img_5.png' },
+      { cat: 'grill', name: 'Moza Kharouf (Lamb Shank)', sub: 'Slow-Braised Tender Lamb Shank', price: '21.90€', desc: 'Slow-braised 300-400g tender lamb shank slowly finished over lava coals. Meltingly tender with oriental rice and nuts.', tags: 'G, E, SM · Royal Dish', img: 'eskandria_assets/page_8_img_10.png' },
+      { cat: 'grill', name: 'Kofta Eskandrani', sub: 'Charcoal-Grilled Spiced Veal Skewers', price: '17.90€', desc: 'Skewers of seasoned minced veal grilled over charcoal coals, served with Batata Harra or rice, salad and tahina.', tags: 'G, E, SM · Charcoal Sizzle', img: 'eskandria_assets/page_8_img_3.png' },
+      { cat: 'grill', name: 'Shish Kebab', sub: 'Flame-Seared Marinated Veal Cubes', price: '18.90€', desc: 'Marinated tender veal cubes grilled over open flames with grilled vegetables, garlic tahina, and hot baladi bread.', tags: 'G, E, SM · Tender Meat', img: 'eskandria_assets/page_8_img_7.png' },
+      { cat: 'grill', name: 'Shish Tawook', sub: 'Garlic & Herb Marinated Chicken Skewers', price: '17.90€', desc: 'Succulent chicken breast cubes marinated in garlic, yogurt, and spices. Served with spicy potatoes and salad.', tags: 'G, E, SM · Family Favorite', img: 'eskandria_assets/page_8_img_2.png' },
+      { cat: 'grill', name: 'Mix Grill Platter', sub: 'Chef’s 4-Meat Mixed Grill Platter', price: '20.90€', desc: 'Generous platter featuring 4 meats: tender kebab, chicken tawook, spiced kofta, and succulent lamb cutlets.', tags: 'G, E, SM · The Big Feast', img: 'eskandria_assets/page_8_img_6.png' },
+      { cat: 'grill', name: 'Kotelett Mashwi (Lamb Chops)', sub: 'Fire-Grilled Tender Lamb Chops', price: '21.90€', desc: '4 delicate marinated lamb chops grilled over blazing coals. Juicy, fragrant, served with salad and bread.', tags: 'G, E, SM · Pure Flavor', img: 'eskandria_assets/page_8_img_5.png' },
 
       // Street Food & Completes
-      { cat: 'street', name: 'Hawawshi Eskandrani', ar: 'حواوشي إسكندراني بالجبنة', price: '14.90€', desc: 'Alexandrian style: spiced ground meat sealed inside freshly kneaded dough, baked crisp with melted cheese & fries.', tags: 'VN, L, G, E · Legendary', img: 'eskandria_assets/page_9_img_4.png' },
-      { cat: 'street', name: 'Kebda Eskandrani (Liver)', ar: 'كبدة إسكندراني أصيلة', price: '16.90€', desc: 'Tender liver strips quickly seared with minced garlic, cumin, and fiery green chili. Served with hot baladi bread and tahina.', tags: 'G, E, SM · True Street Food', img: 'eskandria_assets/page_9_img_6.png' },
-      { cat: 'street', name: 'Molokhia Combo', ar: 'كومبو ملوخية مع ربع دجاجة', price: '19.90€', desc: 'Classic velvety green molokhia soup with garlic-coriander tasha, served with fluffy rice and 1/4 grilled chicken.', tags: 'G, E, SM · Egyptian Comfort', img: 'eskandria_assets/molokhia_shrimp.webp' },
-      { cat: 'street', name: 'Shawarma Bowl', ar: 'شاورما بول أرز وطحينة', price: '17.90€', desc: 'Veal or chicken shawarma over seasoned yellow rice, fresh tomato salad, garlic cream, and tahina sauce.', tags: 'G, E, SM · Satiating', img: 'eskandria_assets/page_9_img_2.png' },
-      { cat: 'street', name: 'Koshary Eskandria', ar: 'كشري مصري بالدقة والصلصة', price: '13.90€', desc: 'The national staple: layers of rice, lentils, macaroni, and chickpeas topped with crispy fried onions and spiced tomato daka.', tags: 'Vegan, VG, G · National Dish', img: 'eskandria_assets/page_10_img_3.png' },
-      { cat: 'street', name: 'Schabowy (Polish Cutlet)', ar: 'شنيتزل بولندي بالبطاطس', price: '16.90€', desc: 'Golden breaded chicken breast prepared Polish home-style with French fries and crisp garden salad.', tags: 'G, E, SM · European Twist', img: 'eskandria_assets/page_9_img_8.png' },
+      { cat: 'street', name: 'Hawawshi Eskandrani', sub: 'Spiced Meat & Melted Cheese Flatbread', price: '14.90€', desc: 'Alexandrian style: spiced ground meat sealed inside freshly kneaded dough, baked crisp with melted cheese & fries.', tags: 'VN, L, G, E · Legendary', img: 'eskandria_assets/page_9_img_4.png' },
+      { cat: 'street', name: 'Kebda Eskandrani (Liver)', sub: 'Authentic Alexandrian Seared Liver', price: '16.90€', desc: 'Tender liver strips quickly seared with minced garlic, cumin, and fiery green chili. Served with hot baladi bread and tahina.', tags: 'G, E, SM · True Street Food', img: 'eskandria_assets/page_9_img_6.png' },
+      { cat: 'street', name: 'Molokhia Combo', sub: 'Velvety Jute Mallow Soup with Chicken', price: '19.90€', desc: 'Classic velvety green molokhia soup with garlic-coriander tasha, served with fluffy rice and 1/4 grilled chicken.', tags: 'G, E, SM · Egyptian Comfort', img: 'eskandria_assets/molokhia_shrimp.webp' },
+      { cat: 'street', name: 'Shawarma Bowl', sub: 'Marinated Shawarma over Spiced Rice', price: '17.90€', desc: 'Veal or chicken shawarma over seasoned yellow rice, fresh tomato salad, garlic cream, and tahina sauce.', tags: 'G, E, SM · Satiating', img: 'eskandria_assets/page_9_img_2.png' },
+      { cat: 'street', name: 'Koshary Eskandria', sub: 'Traditional Egyptian Rice & Lentil Bowl', price: '13.90€', desc: 'The national staple: layers of rice, lentils, macaroni, and chickpeas topped with crispy fried onions and spiced tomato daka.', tags: 'Vegan, VG, G · National Dish', img: 'eskandria_assets/page_10_img_3.png' },
+      { cat: 'street', name: 'Schabowy (Polish Cutlet)', sub: 'Crispy Breaded Cutlet with Potatoes', price: '16.90€', desc: 'Golden breaded chicken breast prepared Polish home-style with French fries and crisp garden salad.', tags: 'G, E, SM · European Twist', img: 'eskandria_assets/page_9_img_8.png' },
 
       // Tajins & Pasta
-      { cat: 'tajin', name: 'Béchamel Pasta Tajin', ar: 'طاجن مكرونة بالبشاميل', price: '13.90€', desc: 'Oven-baked macaroni layered with spiced minced beef and silky creamy béchamel, crusted with golden browned cheese.', tags: 'G, L, E · Pure Comfort', img: 'eskandria_assets/page_11_img_3.png' },
-      { cat: 'tajin', name: 'Gambari Tajin (Prawns)', ar: 'طاجن جمبري بالصلصة أو الكريمة', price: '14.90€', desc: 'Baked pasta with juicy scampi prawns, garlic, and herbs. Choose rich tomato sauce or velvety white cream sauce.', tags: 'K, F, G, L · Oven Hot', img: 'eskandria_assets/page_11_img_7.png' },
-      { cat: 'tajin', name: 'Makrona Kebda', ar: 'مكرونة بالكبدة الإسكندراني', price: '13.90€', desc: 'Penne pasta tossed in spiced tomato reduction, crowned with sizzling garlic & cumin Alexandrian liver.', tags: 'G, M · Signature Fusion', img: 'eskandria_assets/page_11_img_6.png' },
-      { cat: 'tajin', name: 'Frutti di Mare Tajin', ar: 'طاجن مكرونة فواكه البحر', price: '14.90€', desc: 'Baked pasta casserole brimming with calamari, prawns, and mussels, gratinated with cheese till bubbling.', tags: 'K, F, G, L · Seafood Lover', img: 'eskandria_assets/page_11_img_4.png' },
+      { cat: 'tajin', name: 'Béchamel Pasta Tajin', sub: 'Baked Beef & Creamy Béchamel Casserole', price: '13.90€', desc: 'Oven-baked macaroni layered with spiced minced beef and silky creamy béchamel, crusted with golden browned cheese.', tags: 'G, L, E · Pure Comfort', img: 'eskandria_assets/page_11_img_3.png' },
+      { cat: 'tajin', name: 'Gambari Tajin (Prawns)', sub: 'Baked Scampi Casserole with Fresh Herbs', price: '14.90€', desc: 'Baked pasta with juicy scampi prawns, garlic, and herbs. Choose rich tomato sauce or velvety white cream sauce.', tags: 'K, F, G, L · Oven Hot', img: 'eskandria_assets/page_11_img_7.png' },
+      { cat: 'tajin', name: 'Makrona Kebda', sub: 'Spiced Alexandrian Liver Penne Casserole', price: '13.90€', desc: 'Penne pasta tossed in spiced tomato reduction, crowned with sizzling garlic & cumin Alexandrian liver.', tags: 'G, M · Signature Fusion', img: 'eskandria_assets/page_11_img_6.png' },
+      { cat: 'tajin', name: 'Frutti di Mare Tajin', sub: 'Gratinated Mixed Seafood Pasta Casserole', price: '14.90€', desc: 'Baked pasta casserole brimming with calamari, prawns, and mussels, gratinated with cheese till bubbling.', tags: 'K, F, G, L · Seafood Lover', img: 'eskandria_assets/page_11_img_4.png' },
 
       // Breakfast & Mezze
-      { cat: 'breakfast', name: 'Egyptian Breakfast Deluxe', ar: 'إفطار مصري كامل', price: '14.90€', desc: 'Foul Eskandarani with olive oil & cumin, classic falafel with tahina, Shakshouka eggs, baladi bread, and fresh salad.', tags: 'G, L, E · Complete Feast', img: 'eskandria_assets/cheese_falafel.webp' },
-      { cat: 'breakfast', name: 'Manakesh Mix & Cheese', ar: 'مناقيش بالجبن والزعتر والمحمرة', price: '4.90€', desc: 'Fresh oven-baked Levantine flatbreads. Choices: Akkawi Cheese, Zaatar & Olive Oil, Muhammara, Minced Meat, or Spinach.', tags: 'VG, G · Fresh Baked', img: 'eskandria_assets/page_4_img_10.png' },
-      { cat: 'breakfast', name: 'Hummus be Elahma', ar: 'حمص باللحمة المفرومة والمكسرات', price: '8.90€', desc: 'Silky whipped chickpeas topped with sautéed spiced minced veal, toasted nuts, and extra virgin olive oil.', tags: 'G, L, E, VG · Mezze Favorite', img: 'eskandria_assets/page_4_img_6.png' },
-      { cat: 'breakfast', name: 'Batata Harra & Mezze', ar: 'بطاطا حرة ومقبلات إسكندرية', price: '4.90€', desc: 'Spicy golden potato cubes tossed with roasted garlic, fresh coriander, chili flakes, and lemon.', tags: 'VG, G · Zesty Kick', img: 'eskandria_assets/page_5_img_12.png' },
-      { cat: 'breakfast', name: 'Waraq Enab & Mahshi Kromb', ar: 'ورق عنب ومحشي كرنب', price: '5.90€', desc: 'Tender vine leaves and cabbage rolls stuffed with fragrant herb rice, slow-cooked in lemon olive oil broth.', tags: 'VG, G · Homemade', img: 'eskandria_assets/page_5_img_14.png' },
+      { cat: 'breakfast', name: 'Egyptian Breakfast Deluxe', sub: 'Complete Alexandrian Breakfast Spread', price: '14.90€', desc: 'Foul Eskandarani with olive oil & cumin, classic falafel with tahina, Shakshouka eggs, baladi bread, and fresh salad.', tags: 'G, L, E · Complete Feast', img: 'eskandria_assets/cheese_falafel.webp' },
+      { cat: 'breakfast', name: 'Manakesh Mix & Cheese', sub: 'Stone-Baked Levantine Flatbreads', price: '4.90€', desc: 'Fresh oven-baked Levantine flatbreads. Choices: Akkawi Cheese, Zaatar & Olive Oil, Muhammara, Minced Meat, or Spinach.', tags: 'VG, G · Fresh Baked', img: 'eskandria_assets/page_4_img_10.png' },
+      { cat: 'breakfast', name: 'Hummus be Elahma', sub: 'Whipped Chickpeas with Sautéed Spiced Veal', price: '8.90€', desc: 'Silky whipped chickpeas topped with sautéed spiced minced veal, toasted nuts, and extra virgin olive oil.', tags: 'G, L, E, VG · Mezze Favorite', img: 'eskandria_assets/page_4_img_6.png' },
+      { cat: 'breakfast', name: 'Batata Harra & Mezze', sub: 'Spicy Garlic & Coriander Roasted Potatoes', price: '4.90€', desc: 'Spicy golden potato cubes tossed with roasted garlic, fresh coriander, chili flakes, and lemon.', tags: 'VG, G · Zesty Kick', img: 'eskandria_assets/page_5_img_12.png' },
+      { cat: 'breakfast', name: 'Waraq Enab & Mahshi Kromb', sub: 'Stuffed Vine Leaves & Cabbage Rolls', price: '5.90€', desc: 'Tender vine leaves and cabbage rolls stuffed with fragrant herb rice, slow-cooked in lemon olive oil broth.', tags: 'VG, G · Homemade', img: 'eskandria_assets/page_5_img_14.png' },
 
       // Desserts & Sweets
-      { cat: 'dessert', name: 'Kopiec Kreta (Mole Hill Cake)', ar: 'كيكة التل البولندية الأصلية', price: '7.50€', desc: 'Signature Polish cake: rich cocoa sponge mounded with whipped dairy cream and sliced bananas, topped with cake crumbles.', tags: 'L, C, S, N, E · Polish Special', img: 'eskandria_assets/page_15_img_3.png' },
-      { cat: 'dessert', name: 'Cheesecake Deluxe', ar: 'تشيز كيك فاخر بالفستق أو اللوتس', price: '8.80€', desc: 'Velvety creamy cheesecake with buttery biscuit base. Finished with your choice of Sicilian pistachio or Lotus biscoff.', tags: 'L, C, S, N · Heavenly', img: 'eskandria_assets/page_15_img_11.png' },
-      { cat: 'dessert', name: 'Um Ali Orient', ar: 'أم علي بالمكسرات والقشطة', price: '6.50€', desc: 'Traditional Egyptian puff pastry baked in bubbling milk, rich cream, toasted almonds, raisins, and cinnamon.', tags: 'L, C, S, N · Egyptian Legend', img: 'eskandria_assets/page_15_img_2.png' },
-      { cat: 'dessert', name: 'Kunafa & Baklawa', ar: 'كنافة بالجبنة وبقلاوة بالمكسرات', price: '7.50€', desc: 'Warm shredded golden phyllo pastry with melting cheese and fragrant sugar syrup, or rolled walnut baklawa.', tags: 'L, C, S, N · Sweet Tradition', img: 'eskandria_assets/page_15_img_8.png' },
-      { cat: 'dessert', name: 'Waffel / Crepe Deluxe', ar: 'وافل وكريب بالنوتيلا واللوتس والفستق', price: '8.80€', desc: 'Fresh baked golden waffle or French crepe crowned with banana, kiwi, Nutella, Lotus spread, and crunchy nuts.', tags: 'L, C, S, N · Indulgence', img: 'eskandria_assets/page_15_img_5.png' },
+      { cat: 'dessert', name: 'Kopiec Kreta (Mole Hill Cake)', sub: 'Signature Polish Cocoa & Banana Cake', price: '7.50€', desc: 'Signature Polish cake: rich cocoa sponge mounded with whipped dairy cream and sliced bananas, topped with cake crumbles.', tags: 'L, C, S, N, E · Polish Special', img: 'eskandria_assets/page_15_img_3.png' },
+      { cat: 'dessert', name: 'Cheesecake Deluxe', sub: 'Pistachio & Lotus Cream Cheesecake', price: '8.80€', desc: 'Velvety creamy cheesecake with buttery biscuit base. Finished with your choice of Sicilian pistachio or Lotus biscoff.', tags: 'L, C, S, N · Heavenly', img: 'eskandria_assets/page_15_img_11.png' },
+      { cat: 'dessert', name: 'Um Ali Orient', sub: 'Egyptian Bread Pudding with Cream & Nuts', price: '6.50€', desc: 'Traditional Egyptian puff pastry baked in bubbling milk, rich cream, toasted almonds, raisins, and cinnamon.', tags: 'L, C, S, N · Egyptian Legend', img: 'eskandria_assets/page_15_img_2.png' },
+      { cat: 'dessert', name: 'Kunafa & Baklawa', sub: 'Crispy Cheese Phyllo & Pistachio Baklava', price: '7.50€', desc: 'Warm shredded golden phyllo pastry with melting cheese and fragrant sugar syrup, or rolled walnut baklawa.', tags: 'L, C, S, N · Sweet Tradition', img: 'eskandria_assets/page_15_img_8.png' },
+      { cat: 'dessert', name: 'Waffel / Crepe Deluxe', sub: 'Belgian Waffle & French Crepe Special', price: '8.80€', desc: 'Fresh baked golden waffle or French crepe crowned with banana, kiwi, Nutella, Lotus spread, and crunchy nuts.', tags: 'L, C, S, N · Indulgence', img: 'eskandria_assets/page_15_img_5.png' },
 
       // Drinks & Shisha
-      { cat: 'drinks', name: 'Alexandria Limonade', ar: 'ليمون بالنعناع إسكندراني', price: '5.90€', desc: 'Fresh squeezed lemon blended with fresh garden mint leaves and crushed ice. Refreshing coastal vitality.', tags: 'Fresh · Cold Vibe', img: 'eskandria_assets/page_13_img_3.png' },
-      { cat: 'drinks', name: 'Zabado Fruit Shake', ar: 'زبادو فراولة وموز طبيعي', price: '5.80€', desc: 'Thick creamy Egyptian fruit yogurt shake. Flavors: Strawberry, Mango, Banana, Blueberry, or Guava Mint.', tags: 'Dairy · Fresh Made', img: 'eskandria_assets/page_14_img_2.png' },
-      { cat: 'drinks', name: 'Virgin Mojito & Mocktails', ar: 'موخيتو منعش وموكتيلات', price: '6.80€', desc: 'Non-alcoholic crafted mocktails: Blue Ocean, Sunset Mango, Kiwi Mojito, and Coconut Beach.', tags: '0.4L · Signature Sips', img: 'eskandria_assets/page_13_img_7.png' },
-      { cat: 'drinks', name: 'Egyptian & Turkish Coffee', ar: 'قهوة تركي ومصري ومشروبات ساخنة', price: '3.50€', desc: 'Cardamom-infused dark roast Turkish or Arabic coffee brewed traditionally, or hot winter Sahlep with cinnamon & nuts.', tags: 'Hot Vibe · Authentic', img: 'eskandria_assets/page_12_img_4.png' },
-      { cat: 'drinks', name: 'Family Shisha Corner', ar: 'ركن الشيشة العائلية', price: '15.00€', desc: 'Premium shisha flavors in our dedicated family lounge: Double Apple, Lemon Mint, Grape Mint, or Exotic Fruit.', tags: 'Lounge · Relaxation', img: 'eskandria_assets/games_atmosphere.webp' }
+      { cat: 'drinks', name: 'Alexandria Limonade', sub: 'Fresh Mint & Lemonade Crusher', price: '5.90€', desc: 'Fresh squeezed lemon blended with fresh garden mint leaves and crushed ice. Refreshing coastal vitality.', tags: 'Fresh · Cold Vibe', img: 'eskandria_assets/page_13_img_3.png' },
+      { cat: 'drinks', name: 'Zabado Fruit Shake', sub: 'Egyptian Whipped Fruit & Yogurt Smoothie', price: '5.80€', desc: 'Thick creamy Egyptian fruit yogurt shake. Flavors: Strawberry, Mango, Banana, Blueberry, or Guava Mint.', tags: 'Dairy · Fresh Made', img: 'eskandria_assets/page_14_img_2.png' },
+      { cat: 'drinks', name: 'Virgin Mojito & Mocktails', sub: 'Crafted Refreshing Fruit Mocktails', price: '6.80€', desc: 'Non-alcoholic crafted mocktails: Blue Ocean, Sunset Mango, Kiwi Mojito, and Coconut Beach.', tags: '0.4L · Signature Sips', img: 'eskandria_assets/page_13_img_7.png' },
+      { cat: 'drinks', name: 'Egyptian & Turkish Coffee', sub: 'Traditional Cardamom Brewed Coffee', price: '3.50€', desc: 'Cardamom-infused dark roast Turkish or Arabic coffee brewed traditionally, or hot winter Sahlep with cinnamon & nuts.', tags: 'Hot Vibe · Authentic', img: 'eskandria_assets/page_12_img_4.png' },
+      { cat: 'drinks', name: 'Family Shisha Corner', sub: 'Premium Lounge Shisha & Aromatics', price: '15.00€', desc: 'Premium shisha flavors in our dedicated family lounge: Double Apple, Lemon Mint, Grape Mint, or Exotic Fruit.', tags: 'Lounge · Relaxation', img: 'eskandria_assets/games_atmosphere.webp' }
     ];
 
     function renderMenuItems(cat = 'all') {
       const c = $('#menuContainer');
       const filtered = cat === 'all' ? MENU_DATABASE : MENU_DATABASE.filter(i => i.cat === cat);
-      c.innerHTML = filtered.map(item => `
-        <div class="menu-card">
-          <img class="menu-card__img" src="${item.img}" alt="${item.name}" loading="lazy">
-          <div class="menu-card__body">
-            <div>
-              <div class="menu-card__top">
-                <h4>${item.name}</h4>
-                <span>${item.price}</span>
-              </div>
-              <div style="font-family: var(--font-arabic); color: var(--gold); font-size: .95rem; margin-bottom: 6px;">${item.ar}</div>
-              <p class="menu-card__desc">${item.desc}</p>
-            </div>
-            <div class="menu-card__tags">${item.tags}</div>
-          </div>
-        </div>
-      `).join('');
+      c.innerHTML = filtered.map(item => {
+        const tagBadges = (item.tags || '').split(/[·,]/).map(t => t.trim()).filter(Boolean)
+          .map(t => '<span class="menu-card__tag">' + t + '</span>').join('');
+        return '<div class="menu-card">'
+          + '<div class="menu-card__img-wrap">'
+          + '<img class="menu-card__img" src="' + item.img + '" alt="' + item.name + '" loading="lazy">'
+          + '</div>'
+          + '<div class="menu-card__body">'
+          + '<div class="menu-card__top">'
+          + '<h4>' + item.name + '</h4>'
+          + '<span class="menu-card__price">' + item.price + '</span>'
+          + '</div>'
+          + '<div class="menu-card__sub">' + (item.sub || '') + '</div>'
+          + '<p class="menu-card__desc">' + (item.desc || '') + '</p>'
+          + '<div class="menu-card__tags">' + tagBadges + '</div>'
+          + '</div>'
+          + '</div>';
+      }).join('');
     }
 
     // Modal Events
@@ -3214,20 +3694,51 @@ html_content = r'''<!doctype html>
       });
     });
 
-    // Reservation Handler
+    // Reservation Handler - WhatsApp Direct Integration (+49 15567 318173)
     const toast = $('#toast');
     window.handleReserve = function(e) {
       e.preventDefault();
-      const name = $('#resName').value;
-      const phone = $('#resPhone').value;
+      const name = ($('#resName').value || '').trim();
+      const phone = ($('#resPhone').value || '').trim();
       const date = $('#resDate').value;
       const guests = $('#resGuests').value;
+      const notes = $('#resNotes') ? $('#resNotes').value.trim() : '';
 
-      toast.textContent = `Thank you ${name}! Table for ${guests} on ${date} requested. We will confirm via WhatsApp / Call at ${phone}.`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 6000);
+      const lines = [
+        '🍽️ *طلب حجز طاولة جديد - مطعم إسكندرية برلين*',
+        '*New Table Reservation - Eskandria Berlin*',
+        '──────────────────────',
+        `👤 *الاسم / Name:* ${name}`,
+        `📱 *الهاتف / Phone:* ${phone}`,
+        `📅 *التاريخ / Date:* ${date}`,
+        `👥 *الموعد والضيوف / Time & Guests:* ${guests}`,
+        notes ? `📝 *ملاحظات / Notes:* ${notes}` : '',
+        '──────────────────────',
+        '📍 Medebacher Weg 24, 13507 Berlin (Tegel)',
+        '💬 أرجو تأكيد الحجز، شكراً لكم!'
+      ].filter(Boolean);
+
+      const waMsg = lines.join('\n');
+      const waUrl = `https://wa.me/4915567318173?text=${encodeURIComponent(waMsg)}`;
+
+      // Open WhatsApp in new window/tab
+      window.open(waUrl, '_blank');
+
+      if (toast) {
+        toast.textContent = `شكراً ${name}! جاري فتح واتساب (+49 15567 318173) لتأكيد الحجز فوراً...`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 6000);
+      }
       e.target.reset();
     };
+
+    // Auto-set min date for reservation form to today
+    const resDateInput = $('#resDate');
+    if (resDateInput) {
+      const todayStr = new Date().toISOString().split('T')[0];
+      resDateInput.min = todayStr;
+      if (!resDateInput.value) resDateInput.value = todayStr;
+    }
 
     // Boot
     ScrollTrigger.sort();

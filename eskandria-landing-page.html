@@ -1751,6 +1751,32 @@
       color: white;
     }
 
+    /* ── FLOATING WHATSAPP BUTTON ── */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 82px;
+      right: 24px;
+      background: #25D366;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .25s ease-in-out, box-shadow .25s;
+    }
+
+    .floating-wa-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+      color: #fff;
+    }
+
     /* ── FULL MENU MODAL ── */
     /* ── MENU MODAL (reference-design style) ── */
     .menu-modal {
@@ -2297,6 +2323,15 @@
         gap: 6px;
       }
 
+      /* Floating WhatsApp Button on Mobile */
+      .floating-wa-btn {
+        bottom: 64px;
+        right: 16px;
+        padding: 8px 14px;
+        font-size: 13px;
+        gap: 6px;
+      }
+
       /* Menu Modal on Mobile */
       .menu-modal__header {
         padding: 16px var(--gutter) 12px;
@@ -2761,52 +2796,78 @@
     <!-- ── 09 FINALE & BOOKING ── -->
     <section class="chapter finale" id="visit" data-chapter="9" data-theme="dark">
       <div class="finale__glow" aria-hidden="true"></div>
-      <p class="finale__note">Reserve Your Table</p>
+      <p class="finale__note">Online Reservation · تسجيل الحجز الفوري</p>
       <h2 class="split">
-        <span class="line"><span class="line-inner">EXPERIENCE ALEXANDRIA</span></span>
-        <span class="line"><span class="line-inner"><em>IN BERLIN TODAY.</em></span></span>
+        <span class="line"><span class="line-inner">RESERVE YOUR TABLE</span></span>
+        <span class="line"><span class="line-inner"><em>DIRECT VIA WHATSAPP.</em></span></span>
       </h2>
 
       <!-- Booking Card -->
       <div class="booking-grid">
         <div class="booking-form">
-          <h3>Table Reservation</h3>
-          <p>Book online now or call us directly. We welcome individual diners, families, and private event celebrations.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+              <span>Table Reservation</span>
+              <span style="font-size: 1.1rem; color: var(--gold); font-weight: 500;">· حجز طاولة</span>
+            </h3>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #25D366; padding: 5px 12px; border-radius: 99px; font-weight: 700;">
+              <i class="fab fa-whatsapp"></i> +49 15567 318173
+            </span>
+          </div>
+          <p style="margin-bottom: 24px;">سجّل بيانات حجزك وسيتم إرسالها وتأكيدها فوراً عبر واتساب، أو راسلنا مباشرة لأي مناسبات وتجمعات عائلية.</p>
           <form id="reservationForm" onsubmit="handleReserve(event)">
             <div class="form-row">
               <div class="form-group">
-                <label>Your Name *</label>
-                <input type="text" id="resName" required placeholder="Full Name">
+                <label>Full Name · الاسم *</label>
+                <input type="text" id="resName" required placeholder="Full Name / اسمك الكريم">
               </div>
               <div class="form-group">
-                <label>Phone / WhatsApp *</label>
-                <input type="tel" id="resPhone" required placeholder="+49 ...">
+                <label>Phone / WhatsApp · الهاتف *</label>
+                <input type="tel" id="resPhone" required placeholder="+49 15567 ...">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label>Date *</label>
+                <label>Reservation Date · التاريخ *</label>
                 <input type="date" id="resDate" required>
               </div>
               <div class="form-group">
-                <label>Time & Guests *</label>
+                <label>Time & Guests · الوقت والأفراد *</label>
                 <select id="resGuests" required>
-                  <option value="2 Guests - 18:00">2 Guests · 18:00</option>
-                  <option value="4 Guests - 19:00">4 Guests · 19:00</option>
-                  <option value="6 Guests - 20:00">6 Guests · 20:00</option>
-                  <option value="Large Group (8+)">Large Group (8+)</option>
-                  <option value="Open Buffet (Sat/Sun 12:00-16:00)">Weekend Open Buffet (14.99€)</option>
+                  <option value="2 Guests · 18:00">2 Guests · 18:00 (شخصين)</option>
+                  <option value="2 Guests · 19:30">2 Guests · 19:30 (شخصين)</option>
+                  <option value="3 to 4 Guests · 18:30">3 to 4 Guests · 18:30 (٣-٤ أشخاص)</option>
+                  <option value="3 to 4 Guests · 20:00">3 to 4 Guests · 20:00 (٣-٤ أشخاص)</option>
+                  <option value="5 to 6 Guests · 19:00">5 to 6 Guests · 19:00 (عائلة / ٥-٦ أشخاص)</option>
+                  <option value="Large Group / Event (7+ Guests)">Large Group / Event (7+ Guests · مناسبة/مجموعة)</option>
+                  <option value="Weekend Special Gathering">Weekend Special Gathering (تجمع نهاية الأسبوع)</option>
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 10px;">
-              <i class="fa fa-calendar-check"></i> Confirm Reservation
+            <div class="form-group">
+              <label>Special Requests · ملاحظات أو طلبات خاصة (اختياري)</label>
+              <input type="text" id="resNotes" placeholder="مثلاً: طاولة عائلية، مناسبة ميلاد، كراسي أطفال...">
+            </div>
+            <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 10px; background: #25D366; color: #fff; border: 1px solid #25D366; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35); font-weight: 800; font-size: 1rem; gap: 10px; cursor: pointer;">
+              <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> تأكيد الحجز وإرساله عبر واتساب · Reserve via WhatsApp
             </button>
+            <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: rgba(246, 242, 234, 0.65);">
+              أو راسلنا على واتساب مباشرة: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: #25D366; font-weight: 700; text-decoration: underline;">+49 15567 318173</a>
+            </div>
           </form>
         </div>
 
         <div class="booking-info">
           <div>
+            <div class="info-item" style="background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.3); border-radius: 12px; padding: 18px 20px; margin-bottom: 22px;">
+              <h4 style="color: #25D366; margin-bottom: 6px;"><i class="fab fa-whatsapp"></i> WhatsApp Service</h4>
+              <p style="font-size: 0.95rem; margin-bottom: 12px;">
+                Direct inquiries, table reservations & catering:
+              </p>
+              <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" class="btn-action" style="background: #25D366; color: white; border-color: #25D366; padding: 10px 20px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3); text-decoration: none; display: inline-flex;">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Chat: +49 15567 318173
+              </a>
+            </div>
             <div class="info-item">
               <h4><i class="fa fa-map-marker-alt"></i> Location</h4>
               <p>
@@ -2817,7 +2878,7 @@
             <div class="info-item">
               <h4><i class="fa fa-phone-alt"></i> Contact</h4>
               <p>
-                Phone / WhatsApp: <a href="tel:+4915567318173" style="color: var(--gold); font-weight: 700;">+49 15567 318173</a><br>
+                Phone / WhatsApp: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: var(--gold); font-weight: 700;">+49 15567 318173</a><br>
                 Email: <a href="mailto:eskandria.tegel@gmail.com">eskandria.tegel@gmail.com</a>
               </p>
             </div>
@@ -2890,6 +2951,11 @@
       </footer>
     </section>
   </main>
+
+  <!-- ══ FLOATING WHATSAPP BUTTON ══ -->
+  <a href="https://wa.me/4915567318173?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9%20%D8%A8%D8%B1%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D8%AC%D8%B2%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Book Table or Chat on WhatsApp (+49 15567 318173)">
+    <i class="fab fa-whatsapp"></i> احجز واتساب
+  </a>
 
   <!-- ══ FLOATING QUICK LINKS (From original Odoo) ══ -->
   <a href="https://eskandria-restaurant.odoo.com/our-links" class="floating-link" target="_blank">
@@ -3623,20 +3689,51 @@
       });
     });
 
-    // Reservation Handler
+    // Reservation Handler - WhatsApp Direct Integration (+49 15567 318173)
     const toast = $('#toast');
     window.handleReserve = function(e) {
       e.preventDefault();
-      const name = $('#resName').value;
-      const phone = $('#resPhone').value;
+      const name = ($('#resName').value || '').trim();
+      const phone = ($('#resPhone').value || '').trim();
       const date = $('#resDate').value;
       const guests = $('#resGuests').value;
+      const notes = $('#resNotes') ? $('#resNotes').value.trim() : '';
 
-      toast.textContent = `Thank you ${name}! Table for ${guests} on ${date} requested. We will confirm via WhatsApp / Call at ${phone}.`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 6000);
+      const lines = [
+        '🍽️ *طلب حجز طاولة جديد - مطعم إسكندرية برلين*',
+        '*New Table Reservation - Eskandria Berlin*',
+        '──────────────────────',
+        `👤 *الاسم / Name:* ${name}`,
+        `📱 *الهاتف / Phone:* ${phone}`,
+        `📅 *التاريخ / Date:* ${date}`,
+        `👥 *الموعد والضيوف / Time & Guests:* ${guests}`,
+        notes ? `📝 *ملاحظات / Notes:* ${notes}` : '',
+        '──────────────────────',
+        '📍 Medebacher Weg 24, 13507 Berlin (Tegel)',
+        '💬 أرجو تأكيد الحجز، شكراً لكم!'
+      ].filter(Boolean);
+
+      const waMsg = lines.join('\n');
+      const waUrl = `https://wa.me/4915567318173?text=${encodeURIComponent(waMsg)}`;
+
+      // Open WhatsApp in new window/tab
+      window.open(waUrl, '_blank');
+
+      if (toast) {
+        toast.textContent = `شكراً ${name}! جاري فتح واتساب (+49 15567 318173) لتأكيد الحجز فوراً...`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 6000);
+      }
       e.target.reset();
     };
+
+    // Auto-set min date for reservation form to today
+    const resDateInput = $('#resDate');
+    if (resDateInput) {
+      const todayStr = new Date().toISOString().split('T')[0];
+      resDateInput.min = todayStr;
+      if (!resDateInput.value) resDateInput.value = todayStr;
+    }
 
     // Boot
     ScrollTrigger.sort();
