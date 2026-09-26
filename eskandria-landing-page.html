@@ -2251,16 +2251,76 @@
 
       /* 06 Atmosphere (Ritual) */
       .ritual {
-        padding: 80px var(--gutter) 60px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding: 70px var(--gutter) 60px !important;
+        min-height: auto !important;
+        height: auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .ritual__number {
+        display: none !important;
+      }
+      .ritual .chapter-tag {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin: 0 0 16px 0 !important;
+        width: fit-content !important;
+      }
+      .ritual__copy {
+        max-width: 100% !important;
+        width: 100% !important;
+        display: block !important;
+      }
+      .ritual .kicker {
+        display: block !important;
+        margin-bottom: 12px !important;
+      }
+      .ritual h2.split {
+        font-size: clamp(2.2rem, 9.5vw, 3.2rem) !important;
+        line-height: 1.1 !important;
+        margin: 0 0 18px 0 !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+      }
+      .ritual h2.split .line {
+        display: block !important;
+      }
+      .ritual .body-copy {
+        font-size: 0.96rem !important;
+        line-height: 1.65 !important;
+        color: rgba(246, 242, 234, 0.9) !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+      }
+      .ritual .words .w {
+        opacity: 0.95 !important;
+        display: inline !important;
       }
       .ritual__uses {
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 24px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-top: 28px !important;
+        width: 100% !important;
       }
       .ritual__uses span {
-        font-size: .82rem;
-        padding: 8px 14px;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: .8rem !important;
+        padding: 11px 12px !important;
+        border-radius: 10px !important;
+        opacity: 1 !important;
+        transform: none !important;
+        background: rgba(246, 242, 234, 0.06) !important;
+        border: 1px solid rgba(246, 242, 234, 0.14) !important;
+        box-sizing: border-box !important;
       }
 
       /* 07 Recipes Gallery */
@@ -3604,11 +3664,24 @@
       });
     }
 
-    // Ritual
-    gsap.timeline({ scrollTrigger: { trigger: '.ritual', start: 'top top', end: '+=200%', pin: true, scrub: 1, anticipatePin: 1 } })
-      .to('.ritual .words .w', { opacity: 1, stagger: 0.02, duration: 0.6, ease: 'none' }, 0.2)
-      .fromTo('.ritual__uses span', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'back.out(1.5)' }, 0.8)
-      .set({}, {}, 2.2);
+    // Ritual (Pinned on desktop, natural fluid flow on mobile)
+    gsap.matchMedia().add({ desk: '(min-width: 901px)', mob: '(max-width: 900px)' }, ctx => {
+      if (ctx.conditions.desk) {
+        gsap.timeline({ scrollTrigger: { trigger: '.ritual', start: 'top top', end: '+=200%', pin: true, scrub: 1, anticipatePin: 1 } })
+          .to('.ritual .words .w', { opacity: 1, stagger: 0.02, duration: 0.6, ease: 'none' }, 0.2)
+          .fromTo('.ritual__uses span', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: 'back.out(1.5)' }, 0.8)
+          .set({}, {}, 2.2);
+      } else {
+        gsap.from('.ritual__uses span', {
+          y: 20,
+          opacity: 0,
+          stagger: 0.06,
+          duration: 0.45,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.ritual__uses', start: 'top 85%' }
+        });
+      }
+    });
 
     // Recipes (Hanging Gallery)
     const SIGNATURE_RECIPES = [
