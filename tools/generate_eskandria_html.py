@@ -2043,9 +2043,9 @@ html_content = r'''<!doctype html>
       </p>
       <div class="hero__buffet">
         <div class="hero__buffet-badge">
-          <i class="fa fa-utensils"></i> Open Buffet 14.99€
+          <i class="fa fa-certificate"></i> 100% Halal Food
         </div>
-        <div style="font-size: .85rem; color: rgba(246, 242, 234, 0.7);">Sat & Sun | 12:00 – 16:00</div>
+        <div style="font-size: .85rem; color: rgba(246, 242, 234, 0.7);">حلال 100% · Certified Halal</div>
       </div>
       <div class="hero__scroll"><i></i><span>Scroll To Taste</span></div>
     </section>
