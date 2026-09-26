@@ -2863,10 +2863,10 @@
       </div>
     </section>
 
-    <!-- ── 09 FINALE & BOOKING ── -->
+      <!-- ── 09 FINALE & BOOKING ── -->
     <section class="chapter finale" id="visit" data-chapter="9" data-theme="dark">
       <div class="finale__glow" aria-hidden="true"></div>
-      <p class="finale__note">Online Reservation · تسجيل الحجز الفوري</p>
+      <p class="finale__note">Online Reservation · Direct Instant Confirmation</p>
       <h2 class="split">
         <span class="line"><span class="line-inner">RESERVE YOUR TABLE</span></span>
         <span class="line"><span class="line-inner"><em>DIRECT VIA WHATSAPP.</em></span></span>
@@ -2878,51 +2878,82 @@
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
             <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
               <span>Table Reservation</span>
-              <span style="font-size: 1.1rem; color: var(--gold); font-weight: 500;">· حجز طاولة</span>
+              <span style="font-size: 1.05rem; color: var(--gold); font-weight: 500;">· Direct Booking</span>
             </h3>
             <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #25D366; padding: 5px 12px; border-radius: 99px; font-weight: 700;">
               <i class="fab fa-whatsapp"></i> +49 15567 318173
             </span>
           </div>
-          <p style="margin-bottom: 24px;">سجّل بيانات حجزك وسيتم إرسالها وتأكيدها فوراً عبر واتساب، أو راسلنا مباشرة لأي مناسبات وتجمعات عائلية.</p>
+          <p style="margin-bottom: 16px; color: rgba(246, 242, 234, 0.8); line-height: 1.6;">
+            Fill in your details below for instant confirmation directly via WhatsApp. Walk-ins and private gatherings are warmly welcome.
+          </p>
+
+          <!-- Celebrations & Group Dining Highlight -->
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 10px; margin-bottom: 22px; color: var(--gold-light); font-size: 0.88rem;">
+            <i class="fa fa-champagne-glasses" style="color: var(--gold); font-size: 1.1rem; flex-shrink: 0;"></i>
+            <span><strong>Available for Celebrations, Private Events & Group Dining.</strong></span>
+          </div>
+
           <form id="reservationForm" onsubmit="handleReserve(event)">
             <div class="form-row">
               <div class="form-group">
-                <label>Full Name · الاسم *</label>
-                <input type="text" id="resName" required placeholder="Full Name / اسمك الكريم">
+                <label>Full Name *</label>
+                <input type="text" id="resName" required placeholder="e.g. John Doe">
               </div>
               <div class="form-group">
-                <label>Phone / WhatsApp · الهاتف *</label>
-                <input type="tel" id="resPhone" required placeholder="+49 15567 ...">
+                <label>Phone / WhatsApp *</label>
+                <input type="tel" id="resPhone" required placeholder="+49 15567 318173">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label>Reservation Date · التاريخ *</label>
+                <label>Reservation Date *</label>
                 <input type="date" id="resDate" required>
               </div>
               <div class="form-group">
-                <label>Time & Guests · الوقت والأفراد *</label>
-                <select id="resGuests" required>
-                  <option value="2 Guests · 18:00">2 Guests · 18:00 (شخصين)</option>
-                  <option value="2 Guests · 19:30">2 Guests · 19:30 (شخصين)</option>
-                  <option value="3 to 4 Guests · 18:30">3 to 4 Guests · 18:30 (٣-٤ أشخاص)</option>
-                  <option value="3 to 4 Guests · 20:00">3 to 4 Guests · 20:00 (٣-٤ أشخاص)</option>
-                  <option value="5 to 6 Guests · 19:00">5 to 6 Guests · 19:00 (عائلة / ٥-٦ أشخاص)</option>
-                  <option value="Large Group / Event (7+ Guests)">Large Group / Event (7+ Guests · مناسبة/مجموعة)</option>
-                  <option value="Weekend Special Gathering">Weekend Special Gathering (تجمع نهاية الأسبوع)</option>
+                <label>Preferred Time *</label>
+                <select id="resTime" required>
+                  <option value="12:00 PM">12:00 PM (Lunch)</option>
+                  <option value="13:00 PM">01:00 PM</option>
+                  <option value="14:00 PM">02:00 PM</option>
+                  <option value="15:00 PM">03:00 PM</option>
+                  <option value="16:00 PM">04:00 PM</option>
+                  <option value="17:00 PM">05:00 PM</option>
+                  <option value="18:00 PM" selected>06:00 PM (Dinner)</option>
+                  <option value="18:30 PM">06:30 PM</option>
+                  <option value="19:00 PM">07:00 PM</option>
+                  <option value="19:30 PM">07:30 PM</option>
+                  <option value="20:00 PM">08:00 PM</option>
+                  <option value="20:30 PM">08:30 PM</option>
+                  <option value="21:00 PM">09:00 PM</option>
+                  <option value="21:30 PM">09:30 PM</option>
+                  <option value="22:00 PM">10:00 PM</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-              <label>Special Requests · ملاحظات أو طلبات خاصة (اختياري)</label>
-              <input type="text" id="resNotes" placeholder="مثلاً: طاولة عائلية، مناسبة ميلاد، كراسي أطفال...">
+              <label>Number of Guests *</label>
+              <select id="resGuests" required>
+                <option value="1 Person">1 Person</option>
+                <option value="2 Guests" selected>2 Guests</option>
+                <option value="3 Guests">3 Guests</option>
+                <option value="4 Guests">4 Guests</option>
+                <option value="5 Guests">5 Guests</option>
+                <option value="6 Guests">6 Guests</option>
+                <option value="7 to 10 Guests (Group Dining)">7 to 10 Guests (Group Dining)</option>
+                <option value="10 to 15 Guests (Celebration & Party)">10 to 15 Guests (Celebration & Party)</option>
+                <option value="15+ Guests (Private Event / Full Buyout)">15+ Guests (Private Event / Full Buyout)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Special Requests / Occasion (Optional)</label>
+              <input type="text" id="resNotes" placeholder="e.g. Birthday party, group dinner, family table, kids chair...">
             </div>
             <button type="submit" class="btn-action" style="width: 100%; justify-content: center; margin-top: 10px; background: #25D366; color: #fff; border: 1px solid #25D366; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35); font-weight: 800; font-size: 1rem; gap: 10px; cursor: pointer;">
-              <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> تأكيد الحجز وإرساله عبر واتساب · Reserve via WhatsApp
+              <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Confirm Reservation via WhatsApp
             </button>
             <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: rgba(246, 242, 234, 0.65);">
-              أو راسلنا على واتساب مباشرة: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: #25D366; font-weight: 700; text-decoration: underline;">+49 15567 318173</a>
+              Or message us directly on WhatsApp: <a href="https://wa.me/4915567318173" target="_blank" rel="noopener" style="color: #25D366; font-weight: 700; text-decoration: underline;">+49 15567 318173</a>
             </div>
           </form>
         </div>
@@ -3023,8 +3054,8 @@
   </main>
 
   <!-- ══ FLOATING WHATSAPP BUTTON ══ -->
-  <a href="https://wa.me/4915567318173?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9%20%D8%A8%D8%B1%D9%84%D9%8A%D9%86%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D8%AC%D8%B2%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9" class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Book Table or Chat on WhatsApp (+49 15567 318173)">
-    <i class="fab fa-whatsapp"></i> <span>احجز واتساب</span>
+  <a href="https://wa.me/4915567318173?text=Hello%20Eskandria%20Restaurant%20Berlin%2C%20I%20would%20like%20to%20inquire%20about%20reserving%20a%20table" class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Book Table or Chat on WhatsApp (+49 15567 318173)">
+    <i class="fab fa-whatsapp"></i> <span>Book on WhatsApp</span>
   </a>
 
   <!-- ══ FLOATING QUICK LINKS (From original Odoo) ══ -->
@@ -3773,21 +3804,22 @@
       const name = ($('#resName').value || '').trim();
       const phone = ($('#resPhone').value || '').trim();
       const date = $('#resDate').value;
+      const time = $('#resTime') ? $('#resTime').value : '';
       const guests = $('#resGuests').value;
       const notes = $('#resNotes') ? $('#resNotes').value.trim() : '';
 
       const lines = [
-        '🍽️ *طلب حجز طاولة جديد - مطعم إسكندرية برلين*',
-        '*New Table Reservation - Eskandria Berlin*',
-        '──────────────────────',
-        `👤 *الاسم / Name:* ${name}`,
-        `📱 *الهاتف / Phone:* ${phone}`,
-        `📅 *التاريخ / Date:* ${date}`,
-        `👥 *الموعد والضيوف / Time & Guests:* ${guests}`,
-        notes ? `📝 *ملاحظات / Notes:* ${notes}` : '',
-        '──────────────────────',
+        '🍽️ *New Table Reservation — Eskandria Restaurant Berlin*',
+        '━━━━━━━━━━━━━━━━━━━━',
+        `👤 *Guest Name:* ${name}`,
+        `📱 *Phone / WhatsApp:* ${phone}`,
+        `📅 *Date:* ${date}`,
+        `⏰ *Preferred Time:* ${time}`,
+        `👥 *Party Size / Guests:* ${guests}`,
+        notes ? `📝 *Special Requests / Occasion:* ${notes}` : '',
+        '━━━━━━━━━━━━━━━━━━━━',
         '📍 Medebacher Weg 24, 13507 Berlin (Tegel)',
-        '💬 أرجو تأكيد الحجز، شكراً لكم!'
+        '💬 Please confirm availability and reservation. Thank you!'
       ].filter(Boolean);
 
       const waMsg = lines.join('\n');
@@ -3797,7 +3829,7 @@
       window.open(waUrl, '_blank');
 
       if (toast) {
-        toast.textContent = `شكراً ${name}! جاري فتح واتساب (+49 15567 318173) لتأكيد الحجز فوراً...`;
+        toast.textContent = `Thank you ${name}! Opening WhatsApp (+49 15567 318173) to confirm your booking instantly...`;
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 6000);
       }
