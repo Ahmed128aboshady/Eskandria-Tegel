@@ -2045,7 +2045,6 @@ html_content = r'''<!doctype html>
         <div class="hero__buffet-badge">
           <i class="fa fa-certificate"></i> 100% Halal Food
         </div>
-        <div style="font-size: .85rem; color: rgba(246, 242, 234, 0.7);">حلال 100% · Certified Halal</div>
       </div>
       <div class="hero__scroll"><i></i><span>Scroll To Taste</span></div>
     </section>
