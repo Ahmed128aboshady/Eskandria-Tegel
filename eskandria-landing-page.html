@@ -76,6 +76,20 @@
       text-rendering: optimizeLegibility;
     }
 
+    /* Odoo Full-Width Embed Reset (Eliminates white margins when embedded in Odoo) */
+    #wrapwrap, 
+    main, 
+    .s_embed_code, 
+    .s_embed_code .container, 
+    .s_embed_code .container-fluid, 
+    .s_embed_code .row,
+    .o_colored_level {
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
