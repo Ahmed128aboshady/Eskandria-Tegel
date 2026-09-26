@@ -1946,45 +1946,427 @@
       opacity: 1;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ══════════════════════════════════════════════
+       RESPONSIVE DESIGN (TABLETS & MOBILE)
+       ══════════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .site-header {
-        grid-template-columns: 1fr auto;
+      :root {
+        --gutter: 20px;
       }
-      nav {
+
+      /* Base overflow protection */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* Hide floating scroll meter on mobile */
+      .scroll-meter {
+        display: none !important;
+      }
+
+      /* Header */
+      .site-header {
+        height: 72px;
+        padding: 12px var(--gutter);
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+      .site-header nav {
         display: none;
       }
-      .story,
-      .ingredients,
+      .brand {
+        font-size: 1.15rem;
+        letter-spacing: .08em;
+      }
+      .header-actions {
+        gap: 8px;
+      }
+      .pill {
+        padding: 7px 14px;
+        font-size: .78rem;
+      }
+      .pill__arrow {
+        display: none;
+      }
+
+      /* Floating Tajin */
+      .product-bottle {
+        width: min(56vw, 260px);
+        height: min(56vw, 260px);
+      }
+      .product-halo {
+        width: 60vw;
+        height: 60vw;
+      }
+
+      /* 01 Hero */
+      .hero {
+        padding: 85px var(--gutter) 40px;
+        min-height: 100svh;
+        justify-content: flex-start;
+      }
+      .hero__category {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 14px;
+        margin-bottom: 12px;
+        font-size: .8rem;
+        text-align: center;
+      }
+      .hero__category span {
+        display: inline;
+      }
+      .hero__category span:first-child::after {
+        content: " · ";
+      }
+      .hero__title {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 10px 0 20px;
+        font-size: clamp(2.3rem, 11.5vw, 4rem);
+        line-height: .95;
+        letter-spacing: -.03em;
+        white-space: normal;
+        text-align: center;
+      }
+      .hero__line--l, .hero__line--r {
+        text-align: center;
+        padding: 0;
+      }
+      .hero__location {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: auto;
+        margin-bottom: 14px;
+        text-align: center;
+        font-size: .75rem;
+        line-height: 1.4;
+      }
+      .hero__location strong {
+        font-size: .95rem;
+        margin-bottom: 2px;
+      }
+      .hero__buffet {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .hero__buffet-badge {
+        padding: 6px 14px;
+        font-size: .78rem;
+      }
+      .hero__scroll {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto 10px;
+      }
+
+      /* Marquee */
+      .band {
+        padding: 12px 0;
+        font-size: .9rem;
+      }
+      .band__track {
+        gap: 20px;
+      }
+
+      /* 02 Story */
+      .story {
+        grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 32px;
+      }
+      .story__media {
+        height: 38vh;
+        min-height: 240px;
+        max-height: 340px;
+        margin-top: 10px;
+      }
+      .story__stats {
+        margin-top: 32px;
+        gap: 16px;
+        padding-top: 24px;
+      }
+      .story__stats b {
+        font-size: 2rem;
+      }
+      .story__stats span {
+        font-size: .75rem;
+      }
+
+      /* 03 Ingredients */
+      .ingredients {
+        grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 24px;
+      }
+      .ingredients__media {
+        height: 32vh;
+        min-height: 200px;
+        max-height: 280px;
+      }
+      .ingredient-list {
+        margin-top: 20px;
+        gap: 12px;
+      }
+      .ingredient-list li {
+        padding: 14px 18px;
+        gap: 14px;
+      }
+      .ingredient-list li span {
+        font-size: 1rem;
+      }
+      .ingredient-list li strong {
+        font-size: .95rem;
+      }
+      .ingredients__counter {
+        right: 20px;
+        top: 20px;
+        font-size: 1rem;
+      }
+
+      /* 04 Craft */
       .craft {
         grid-template-columns: 1fr;
+        padding: 80px var(--gutter) 60px;
+        gap: 32px;
       }
       .craft__head {
         position: relative;
         top: 0;
       }
+      .craft__rail {
+        left: 14px;
+      }
+      .craft__steps li {
+        padding: 20px 0 20px 42px;
+      }
+      .craft__steps h3 {
+        font-size: 1.15rem;
+      }
+      .craft__steps p {
+        font-size: .88rem;
+      }
+
+      /* 05 Spectrum */
+      .spectrum {
+        padding: 80px var(--gutter) 60px;
+      }
+      .spectrum__word {
+        font-size: clamp(1.8rem, 6.5vw, 3rem);
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .spectrum__ring {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 24px;
+      }
+      .spectrum__ring-val b {
+        font-size: 2.2rem;
+      }
+      .flavor-notes {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .flavor-note {
+        padding: 7px 14px;
+        font-size: .75rem;
+        gap: 8px;
+      }
+      .flavor-note i {
+        width: 40px;
+      }
+      .spectrum__copy {
+        font-size: .95rem;
+        min-height: 60px;
+      }
+
+      /* 06 Atmosphere (Ritual) */
+      .ritual {
+        padding: 80px var(--gutter) 60px;
+      }
+      .ritual__uses {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .ritual__uses span {
+        font-size: .82rem;
+        padding: 8px 14px;
+      }
+
+      /* 07 Recipes Gallery */
+      .recipes {
+        min-height: 80vh;
+      }
+      .recipes__head {
+        top: 80px;
+        left: var(--gutter);
+      }
+      .gallery__hint {
+        bottom: 16px;
+        font-size: .72rem;
+        padding: 6px 14px;
+      }
+
+      /* 08 Voices */
+      .voices {
+        padding: 80px var(--gutter) 60px;
+      }
+      .voices__cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .voice {
+        padding: 20px;
+      }
+      .voice blockquote {
+        font-size: .92rem;
+        line-height: 1.55;
+      }
+      .voices__score b {
+        font-size: 2.6rem;
+      }
+
+      /* 09 Finale & Booking */
+      .finale {
+        padding: 80px var(--gutter) 40px;
+      }
       .booking-grid {
         grid-template-columns: 1fr;
-        padding: 30px;
+        padding: 24px 18px;
+        gap: 28px;
+        border-radius: 16px;
+      }
+      .booking-form {
+        gap: 14px;
+      }
+      .booking-form input,
+      .booking-form select,
+      .booking-form textarea {
+        padding: 12px 14px;
+        font-size: 16px; /* Prevents auto-zoom on iOS */
       }
       .booking-info {
         border-left: none;
         border-top: 1px solid rgba(246, 242, 234, 0.12);
         padding-left: 0;
-        padding-top: 30px;
+        padding-top: 24px;
       }
-      .voices__cards {
-        grid-template-columns: 1fr;
+      .map-frame {
+        height: 220px;
+        border-radius: 12px;
       }
+
+      /* Footer */
       .footer__top {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
       .footer__cols {
         grid-template-columns: 1fr 1fr;
+        gap: 24px;
       }
-      .product-bottle {
-        width: 68vw;
-        height: 68vw;
+      .footer__bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        font-size: .75rem;
+      }
+
+      /* Floating Quick Links Button */
+      .floating-link {
+        bottom: 16px;
+        right: 16px;
+        padding: 9px 15px;
+        font-size: 13px;
+        gap: 6px;
+      }
+
+      /* Menu Modal on Mobile */
+      .menu-modal__header {
+        padding: 16px var(--gutter) 12px;
+        gap: 12px;
+      }
+      .menu-modal__header h2 {
+        font-size: 1.35rem;
+      }
+      .menu-modal__header p {
+        font-size: .75rem;
+      }
+      .menu-modal__close {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+      }
+      .menu-tabs {
+        padding: 0 var(--gutter);
+        margin-bottom: 20px;
+        gap: 6px;
+      }
+      .menu-tab-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 var(--gutter) 60px;
+      }
+      .menu-card {
+        border-radius: 14px;
+      }
+      .menu-card__img-wrap {
+        padding: 16px 16px 0;
+      }
+      .menu-card__img {
+        width: 130px;
+        height: 130px;
+      }
+      .menu-card__body {
+        padding: 12px 16px 16px;
+      }
+      .menu-card__top h4 {
+        font-size: .95rem;
+      }
+      .menu-card__price {
+        font-size: .95rem;
+      }
+      .menu-card__desc {
+        font-size: .82rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer__cols {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .story__stats {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .brand {
+        font-size: 1rem;
+      }
+      .pill {
+        padding: 6px 11px;
+        font-size: .72rem;
       }
     }
   </style>
@@ -2737,8 +3119,9 @@
           bctx.stroke();
 
           // Render cards
-          const cardW = Math.min(W * 0.72, 420);
-          const cardH = cardW * 1.35;
+          const isMob = W < 600;
+          const cardW = Math.min(W * (isMob ? 0.84 : 0.72), 420);
+          const cardH = cardW * (isMob ? 1.38 : 1.35);
           const spacing = cardW + 60;
           const totalW = items.length * spacing;
           const startX = (W / 2) - (progress * (totalW - W * 0.5));
@@ -2778,16 +3161,17 @@
             bctx.fillText('SIGNATURE ' + item.idx, 20, cardH * 0.65);
 
             bctx.fillStyle = '#f6f2ea';
-            bctx.font = '800 20px Alexandria, sans-serif';
-            bctx.fillText(item.title, 20, cardH * 0.73);
+            bctx.font = (isMob ? '800 16px' : '800 20px') + ' Alexandria, sans-serif';
+            bctx.fillText(item.title, 16, cardH * 0.73);
 
             bctx.fillStyle = '#d4af37';
-            bctx.font = '600 13px Manrope, sans-serif';
-            bctx.fillText(item.sub || '', 20, cardH * 0.80);
+            bctx.font = (isMob ? '600 11px' : '600 13px') + ' Manrope, sans-serif';
+            bctx.fillText(item.sub || '', 16, cardH * 0.80);
 
             bctx.fillStyle = 'rgba(246,242,234,0.7)';
-            bctx.font = '400 13px Manrope, sans-serif';
-            bctx.fillText(item.ingredients.join(' · '), 20, cardH * 0.88);
+            bctx.font = (isMob ? '400 11px' : '400 13px') + ' Manrope, sans-serif';
+            const ingList = isMob ? item.ingredients.slice(0, 2).join(' · ') : item.ingredients.join(' · ');
+            bctx.fillText(ingList, 16, cardH * 0.88);
 
             bctx.fillStyle = '#ff9179';
             bctx.font = '600 12px Manrope, sans-serif';
@@ -2919,16 +3303,16 @@
         { x: '-15vw', y: '-30vh', scale: 0.30, rotation: -6 },   // 08 voices
         { x: '0vw',   y: '-14vh', scale: 0.60, rotation: 0 },    // 09 finale
       ] : [
-        { x: '0vw',   y: '4vh',   scale: 0.85, rotation: 0 },
-        { x: '0vw',   y: '-22vh', scale: 0.44, rotation: -6 },
-        { x: '34vw',  y: '-36vh', scale: 0.28, rotation: 5 },
-        { x: '34vw',  y: '-40vh', scale: 0.24, rotation: 8 },
-        { x: '-34vw', y: '2vh',   scale: 0.28, rotation: 8 },
-        { x: '34vw',  y: '6vh',   scale: 0.32, rotation: -10 },
-        { x: '34vw',  y: '-36vh', scale: 0.20, rotation: 12 },
-        { x: '34vw',  y: '-36vh', scale: 0.20, rotation: -6 },
-        { x: '0vw',   y: '-14vh', scale: 0.44, rotation: 0 },
-      ];
+          { x: '0vw',   y: '2vh',   scale: 0.60, rotation: 0 },   // 01 hero
+          { x: '0vw',   y: '-26vh', scale: 0.40, rotation: -6 },  // 02 story
+          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -5 },  // 03 ingredients
+          { x: '26vw',  y: '-35vh', scale: 0.24, rotation: 6 },   // 04 craft
+          { x: '0vw',   y: '-24vh', scale: 0.32, rotation: 0 },   // 05 spectrum
+          { x: '26vw',  y: '-32vh', scale: 0.26, rotation: -8 },  // 06 ritual
+          { x: '26vw',  y: '-38vh', scale: 0.20, rotation: 10 },  // 07 recipes
+          { x: '0vw',   y: '-34vh', scale: 0.22, rotation: 0 },   // 08 voices
+          { x: '0vw',   y: '-14vh', scale: 0.40, rotation: 0 },   // 09 finale
+        ];
 
       gsap.set(pose, P[0]);
       chapters.forEach((sec, i) => {
